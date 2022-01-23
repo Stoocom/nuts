@@ -20,6 +20,12 @@ if (process.env.NODE_ENV === "production") {
     //res.status(200).json({ message: "I am here!"});
   });
 
+  app.get('/api', (req, res) => {
+    console.log("api_new");
+    console.log(process.env.NODE_ENV);
+    res.send({ message: "Hello world"});
+  });
+
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '/build/index.html'));
   });
