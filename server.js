@@ -9,9 +9,8 @@ const port = process.env.PORT || 3001;
 
 if (process.env.NODE_ENV === "production") {
 
-  app.use(express.static());
-  console.log(process.env.NODE_ENV === "production");
   app.use(express.static(path.join(__dirname, 'build')));
+  console.log(process.env.NODE_ENV === "production");
 
   app.get('/', (req, res) => {
     console.log("api");
