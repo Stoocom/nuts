@@ -7,17 +7,30 @@ const path = require('path');
 const pool = require('./db');
 const port = process.env.PORT || 3001;
 
-app.use(express.static(__dirname));
-app.use(express.static(path.join(__dirname, './build')));
+if (process.env.NODE_ENV === "production") {
 
-app.use(favicon(__dirname + '/build/favicon.png')); 
+  app.use(express.static());
+  console.log(process.env.NODE_ENV === "production");
+  app.use(express.static(path.join(__dirname, 'build')));
+
+  app.get('/', (req, res) => {
+    console.log("api");
+    console.log(process.env.NODE_ENV);
+    res.send({ message: "Hello world"});
+    //res.status(200).json({ message: "I am here!"});
+  });
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/build/index.html'));
+  });
+}
+
+
+// app.use(express.static(__dirname));
+// app.use(express.static(path.join(__dirname, './build')));
+
+// app.use(favicon(__dirname + '/build/favicon.png')); 
  
-app.get('/', (req, res) => {
-  console.log("api");
-  console.log(process.env.NODE_ENV);
-  return res.send({ message: "Hello world"});
-  //res.status(200).json({ message: "I am here!"});
-});
 
 // app.use(express.json()); //req.body
 // console.log(__dirname);
