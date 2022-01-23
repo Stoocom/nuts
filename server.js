@@ -4,7 +4,7 @@ const app = express();
 //const cors = require('cors');
 const path = require('path');
 //const bodyParser = require('body-parser');
-const pool = require('./db');
+//const pool = require('./db');
 const port = process.env.PORT || 3001;
 
 if (process.env.NODE_ENV === "production") {
