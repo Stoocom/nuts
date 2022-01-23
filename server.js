@@ -4,7 +4,7 @@ const app = express();
 //const cors = require('cors');
 const path = require('path');
 //const bodyParser = require('body-parser');
-const pool = require('./db');
+//const pool = require('./db');
 const port = process.env.PORT || 3001;
 
 app.use(express.static(__dirname));
@@ -28,7 +28,7 @@ app.get('*', (req, res) => {
 });
 
 app.get('/api', (req, res) => {
-  console.log("api");
+  console.log("api_new");
   console.log(process.env.NODE_ENV);
   return res.send({ message: "Hello world"});
   //res.status(200).json({ message: "I am here!"});
