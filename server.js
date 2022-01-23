@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require('express');
+const favicon = require('express-favicon');
 const app = express();
 //const cors = require('cors');
 const path = require('path');
@@ -7,8 +8,12 @@ const path = require('path');
 const pool = require('./db');
 const port = process.env.PORT || 3001;
 
+app.use(express.static(__dirname));
 app.use(express.static(path.join(__dirname, './build')));
 
+app.use(favicon(__dirname + '/build/favicon.png')); 
+ 
+//здесь наше приложение отдаёт статику
 
 // app.use(express.json()); //req.body
 // console.log(__dirname);
