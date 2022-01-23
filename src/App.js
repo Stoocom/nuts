@@ -10,6 +10,7 @@ function App() {
   const [str, setData] = useState("");
 
   useEffect( () => {
+    console.log(process.env.NODE_ENV);
     console.log('useEffect');
     fetch(getUrl('api', prefix)).then(res => res.json())
       .then(data => console.log(data))

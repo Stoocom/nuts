@@ -1,11 +1,12 @@
 const express = require('express');
 const favicon = require('express-favicon');
 const app = express();
-//const cors = require('cors');
 const path = require('path');
 //const bodyParser = require('body-parser');
 const pool = require('./db');
 const port = process.env.PORT || 3001;
+
+
 
 if (process.env.NODE_ENV === "production") {
 
@@ -28,7 +29,7 @@ if (process.env.NODE_ENV === "production") {
   app.get('/types', async (req, res) => {
     console.log("types");
     try {
-      const types = await pool.query('SELECT * FROM types');
+      const types = await pool.query('SELECT * FROM type');
       res.json(types.rows);
     } catch (err) {
       console.error(err.message);
@@ -53,8 +54,8 @@ if (process.env.NODE_ENV === "production") {
   app.get('/', (req, res) => {
     console.log("api");
     console.log(process.env.NODE_ENV);
-    res.send({ message: "Hello world"});
-    //res.status(200).json({ message: "I am here!"});
+    //res.send({ message: "Hello world"});
+    res.status(200).json({ message: "I am here!"});
   });
 
   app.get('/users', async (req, res) => {
