@@ -4,7 +4,7 @@ const app = express();
 //const cors = require('cors');
 const path = require('path');
 //const bodyParser = require('body-parser');
-//const pool = require('./db');
+const pool = require('./db');
 const port = process.env.PORT || 3001;
 
 app.use(express.static(__dirname));
@@ -23,9 +23,6 @@ app.get('/', (req, res) => {
 // console.log(__dirname);
 // app.use(express.static(path.join(__dirname, './client/build/index.html')));
 //app.use('/api', express.static('./public'));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './build/index.html'));
-});
 
 app.get('/api', (req, res) => {
   console.log("api_new");
@@ -33,6 +30,7 @@ app.get('/api', (req, res) => {
   return res.send({ message: "Hello world"});
   //res.status(200).json({ message: "I am here!"});
 });
+
 // ======== middlware =========
 // app.use(bodyParser.json());
 // app.use(
@@ -53,13 +51,10 @@ app.get('/users', async (req, res) => {
   }
 });
 
-if (process.env.PROD) {
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './build/index.html'));
+});
 
-  console.log(process.env.PROD);
-  // app.get('*', (req, res) => {
-  //   res.sendFile(path.join(__dirname, './client/build/index.html'));
-  // });
-}
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'client/build/index.html'));
 // });
