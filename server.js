@@ -7,51 +7,51 @@ const pool = require('./db');
 const port = process.env.PORT || 3001;
 
 
-
 if (process.env.NODE_ENV === "production") {
+    app.use(express.static(path.join(__dirname, 'build')));
+    app.use(favicon(__dirname + '/build/favicon.ico'));
+    console.log(process.env.NODE_ENV === "production");
 
-  app.use(express.static(path.join(__dirname, 'build')));
-  app.use(favicon(__dirname + '/build/favicon.ico'));
-  console.log(process.env.NODE_ENV === "production");
+    app.get('/', (req, res) => {
+      console.log("api");
+      console.log(process.env.NODE_ENV);
+      res.send({ message: "Hello world"});
+    });
 
-  app.get('/', (req, res) => {
-    console.log("api");
-    console.log(process.env.NODE_ENV);
-    res.send({ message: "Hello world"});
-  });
+    app.get('/api', (req, res) => {
+      console.log("api_new");
+      console.log(process.env.NODE_ENV);
+      res.send({ "message": "Hello world"});
+    });
 
-  app.get('/api', (req, res) => {
-    console.log("api_new");
-    console.log(process.env.NODE_ENV);
-    res.send({ message: "Hello world"});
-  });
-
-  app.get('/types', async (req, res) => {
-    console.log("types");
-    try {
-      const types = await pool.query('SELECT * FROM type');
-      res.json(types.rows);
-    } catch (err) {
-      console.error(err.message);
-    }
-  });
-
-  app.get('/users', async (req, res) => {
-    console.log("users")
-    try {
-        const users = await pool.query('SELECT * FROM users');
-        res.json(users.rows);
-    } catch (err) {
+    app.get('/types', async (req, res) => {
+      console.log("types");
+      try {
+        const types = await pool.query('SELECT * FROM type');
+        res.json(types.rows);
+      } catch (err) {
         console.error(err.message);
-    }
-  });
+      }
+    });
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/build/index.html'));
-  });
+    app.get('/users', async (req, res) => {
+      console.log("users")
+      try {
+          const users = await pool.query('SELECT * FROM users');
+          res.json(users.rows);
+      } catch (err) {
+          console.error(err.message);
+      }
+    });
+
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, '/build/index.html'));
+    });
 }
 
-  app.get('/', (req, res) => {
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', (req, res) => {
     console.log("api");
     console.log(process.env.NODE_ENV);
     //res.send({ message: "Hello world"});
@@ -67,16 +67,18 @@ if (process.env.NODE_ENV === "production") {
         console.error(err.message);
     }
   });
+  
+  app.get('/api', (req, res) => {
+    console.log("api_new");
+    console.log(process.env.NODE_ENV);
+    res.send({ message: "Hello world"});
+  });
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './build/index.html'));
 });
 
-app.get('/api', (req, res) => {
-  console.log("api_new");
-  console.log(process.env.NODE_ENV);
-  res.send({ message: "Hello world"});
-});
+
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
