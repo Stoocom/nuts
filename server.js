@@ -13,7 +13,12 @@ app.use(express.static(path.join(__dirname, './build')));
 
 app.use(favicon(__dirname + '/build/favicon.png')); 
  
-//здесь наше приложение отдаёт статику
+app.get('/', (req, res) => {
+  console.log("api");
+  console.log(process.env.NODE_ENV);
+  return res.send({ message: "Hello world"});
+  //res.status(200).json({ message: "I am here!"});
+});
 
 // app.use(express.json()); //req.body
 // console.log(__dirname);

@@ -6,7 +6,7 @@ function App() {
 
   useEffect( () => {
     console.log('useEffect');
-    fetch('/api').then(res => res.json())
+    fetch('/').then(res => res.json())
       .then(data => console.log(data))
       .catch((err) => console.log(err));
   }, [])
