@@ -11,7 +11,10 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "5.0.0",
-    "web-vitals": "^2.1.0"
+    "web-vitals": "^2.1.0",
+    "express": "^4.17.2",
+    "path": "^0.12.7",
+    "pg": "^8.7.1"
   },
   "scripts": {
     "start": "node server.js",
@@ -36,11 +39,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "dotenv": "^14.2.0",
-    "express": "^4.17.2",
-    "path": "^0.12.7",
-    "pg": "^8.7.1"
   }
 }
