@@ -1,4 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import Header from './components/Header';
+import ImagesBlock from './components/Images_block';
+import TopWaveBlock from './components/TopWave_block';
+import Catalog from './components/Catalog';
+import DownWave from './components/DownWave';
 import './App.css';
 
 // function getUrl(relativeUrl, prefix) {
@@ -7,21 +12,29 @@ import './App.css';
 
 function App() {
   //const prefix = process.env.NODE_ENV === 'production' ? "https://heroku-app-test12.herokuapp.com/" : "http://localhost:3001";
-  const [str, setData] = useState("");
+  const [str] = useState("");
 
   useEffect( () => {
     console.log(process.env.NODE_ENV);
-    console.log('useEffect');
+    console.log('useEffect MainPage');
     fetch('users').then(res => res.json())
       .then(data => console.log(data))
       .catch((err) => console.log(err));
   }, [])
   return (
-    <div className="App">
-      <header className="App-header">
-        { str ? str : 'No data' }
-      </header>
-    </div>
+    <section>
+      { str ? str : 'No data' }
+      <div className="App">  
+        <Header />
+        <ImagesBlock />
+        <TopWaveBlock />
+        <Catalog />
+        <DownWave />
+        <div className="New">
+          <ImagesBlock />
+        </div>
+      </div>
+    </section>
   );
 }
 

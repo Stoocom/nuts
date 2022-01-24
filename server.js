@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === "production") {
     app.get('/types', async (req, res) => {
       console.log("types");
       try {
-        const types = await pool.query('SELECT * FROM type');
+        const types = await pool.query('SELECT * FROM types');
         res.json(types.rows);
       } catch (err) {
         console.error(err.message);
@@ -65,6 +65,16 @@ app.get('/', (req, res) => {
         res.json(users.rows);
     } catch (err) {
         console.error(err.message);
+    }
+  });
+
+  app.get('/types', async (req, res) => {
+    console.log("types");
+    try {
+      const types = await pool.query('SELECT * FROM types');
+      res.json(types.rows);
+    } catch (err) {
+      console.error(err.message);
     }
   });
   
