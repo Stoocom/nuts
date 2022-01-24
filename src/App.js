@@ -24,7 +24,6 @@ function App() {
   return (
     <section>
       <div className="App">  
-        <Header />
         <ImagesBlock />
         <TopWaveBlock />
         <Catalog />
