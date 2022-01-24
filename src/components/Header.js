@@ -72,7 +72,7 @@ function Header() {
   return (
       <AppBar position='static' style={{ background: '#FFFFFF', padding: '0 calc(50% - 585px)' }} >
           <Toolbar style={{ display: 'flex', fontSize: '100%', minHeight: '100px', lineHeight: '2rem', color: '#800000', padding: 0, justifyContent: 'space-between' }}>
-            <Box style={{ flex: 2, display: 'flex', flexDirection: 'row', marginLeft: '10px' }}>
+            <Box style={{ flex: 2, display: 'flex', flexDirection: 'row' }}>
               <Button className={burgerLink}>
                 <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <line y1="1" x2="21" y2="1" stroke="black" strokeWidth="2"/>
@@ -115,7 +115,7 @@ function Header() {
                 Доставка
               </Link>
             </Box >
-            <Box style={{ flex: 2, order: 3, marginTop: '6px', marginRight: '10px', display: 'flex', justifyContent: 'space-between' }}>
+            <Box style={{ flex: 2, order: 3, marginTop: '6px', display: 'flex', justifyContent: 'space-between' }}>
               <Button>
                 <svg width="26" height="28" viewBox="0 0 26 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M25.8416 26.1278L17.9311 17.8851C19.5734 15.9842 20.5831 13.4782 20.5831 10.7239C20.5831 4.81107 15.966 0 10.2915 0C4.61709 0 0 4.81107 0 10.7239C0 16.6366 4.61714 21.4477 10.2916 21.4477C12.9349 21.4477 15.3398 20.3956 17.1642 18.6832L25.0746 26.9259C25.1808 27.0366 25.3194 27.0918 25.4581 27.0918C25.5968 27.0918 25.7354 27.0366 25.8416 26.927C26.0528 26.7058 26.0528 26.349 25.8416 26.1278ZM10.2916 20.3189C5.21407 20.3189 1.08336 16.0147 1.08336 10.7239C1.08336 5.43312 5.21402 1.12886 10.2916 1.12886C15.3691 1.12886 19.4998 5.43307 19.4998 10.7239C19.4998 16.0146 15.3691 20.3189 10.2916 20.3189Z" fill="black"/>
