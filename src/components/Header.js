@@ -14,6 +14,14 @@ const useStyles =  makeStyles((theme) => ({
       display: 'none'
     }
   },
+  buttonsLeftGroup: {
+    display: 'none', 
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexDirection: 'row',
+      flex: 2 
+    }
+  },
   burgerLink: {
     [theme.breakpoints.up('sm')]: {
       display: 'none'
@@ -68,11 +76,11 @@ const useStyles =  makeStyles((theme) => ({
 
 
 function Header() {
-  const { burgerLink, buttonsGroup, personalRightLink, personalLeftLink, centralHomeLink } = useStyles();
+  const { buttonsLeftGroup, burgerLink, buttonsGroup, personalRightLink, personalLeftLink, centralHomeLink } = useStyles();
   return (
       <AppBar position='static' style={{ background: '#FFFFFF', padding: '0 calc(50% - 585px)' }} >
           <Toolbar style={{ display: 'flex', fontSize: '100%', minHeight: '100px', lineHeight: '2rem', color: '#800000', padding: 0, justifyContent: 'space-between' }}>
-            <Box style={{ flex: 2, display: 'flex', flexDirection: 'row' }}>
+            <Box className={buttonsLeftGroup}>
               <Button className={burgerLink}>
                 <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <line y1="1" x2="21" y2="1" stroke="black" strokeWidth="2"/>
