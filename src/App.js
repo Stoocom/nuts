@@ -23,7 +23,7 @@ function App() {
   }, [])
   return (
     <section>
-      <div className="App">
+      <div className="App">  
         <ImagesBlock />
         <TopWaveBlock />
         <Catalog />

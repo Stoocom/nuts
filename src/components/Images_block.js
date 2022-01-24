@@ -7,6 +7,7 @@ const foto =  require("../images/catalog/nuts_images.jpg");
 const useStyles =  makeStyles((theme) => ({
   slider: {
     backgroundColor: '#000',
+    width: '100%',
     height: '100%',
     justifyContent: 'space-evenly',
     display: 'flex',
