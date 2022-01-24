@@ -24,13 +24,7 @@ function App() {
   return (
     <section>
       <div className="App">  
-        <ImagesBlock />
-        <TopWaveBlock />
         <Catalog />
-        <DownWave />
-        <div className="New">
-          <ImagesBlock />
-        </div>
       </div>
     </section>
   );
