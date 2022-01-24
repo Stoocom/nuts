@@ -79,7 +79,7 @@ function Catalog() {
   }, [])
   return (
     <Box className={main}>
-      <Container maxWidth="lg">
+      <Container maxWidth="lg" style={{ padding: 30 }}>
         <Grid container spacing={8}>
           { 
             types.length 
