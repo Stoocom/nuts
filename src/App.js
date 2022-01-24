@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Header from './components/Header';
 import ImagesBlock from './components/Images_block';
 import TopWaveBlock from './components/TopWave_block';
@@ -12,7 +12,7 @@ import './App.css';
 
 function App() {
   //const prefix = process.env.NODE_ENV === 'production' ? "https://heroku-app-test12.herokuapp.com/" : "http://localhost:3001";
-  const [str] = useState("");
+  //const [str] = useState("");
 
   useEffect( () => {
     console.log(process.env.NODE_ENV);

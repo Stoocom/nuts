@@ -63,14 +63,16 @@ const useStyles =  makeStyles((theme) => ({
 
 const imageTypes = [ 
   { type: nuts },  { type: dried_fruits },  { type: spices }
-]
+];
+const testArray = [{ id: 1, name: "nuts" },  { id: 2, name: "dried_fruits" },  { id: 3, name: "spices" }];
+
 function Catalog() {
   const { main, card_container, item_media, title_box, buttons_container, button_item } = useStyles();
-  const [types, setTypes] = useState([]);
+  const [types, setTypes] = useState(testArray);
 
   useEffect( () => {
-    // console.log(imageTypes[0].type);
-    // console.log('useEffect CatalogPage');
+    console.log(imageTypes[0].type);
+    console.log('useEffect CatalogPage');
     fetch('types').then(res => res.json())
       .then(data => setTypes(data))
       .catch((err) => console.log(err));
