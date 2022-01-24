@@ -17,13 +17,12 @@ function App() {
   useEffect( () => {
     console.log(process.env.NODE_ENV);
     console.log('useEffect MainPage');
-    fetch('users').then(res => res.json())
-      .then(data => console.log(data))
-      .catch((err) => console.log(err));
+    // fetch('users').then(res => res.json())
+    //   .then(data => console.log(data))
+    //   .catch((err) => console.log(err));
   }, [])
   return (
     <section>
-      { str ? str : 'No data' }
       <div className="App">  
         <Header />
         <ImagesBlock />
