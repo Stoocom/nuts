@@ -1,5 +1,6 @@
 .App {
   padding: 0 calc(50% - 800px);
+  min-width: 419px;
 }
 .New {
   margin-top: -69%;

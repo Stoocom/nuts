@@ -79,7 +79,7 @@ function Header() {
   const { buttonsLeftGroup, burgerLink, buttonsGroup, personalRightLink, personalLeftLink, centralHomeLink } = useStyles();
   return (
       <AppBar position='static' style={{ background: '#FFFFFF', padding: '0 calc(50% - 585px)' }} >
-          <Toolbar style={{ display: 'flex', fontSize: '100%', minHeight: '100px', lineHeight: '2rem', color: '#800000', padding: 0, justifyContent: 'space-between' }}>
+          <Toolbar style={{ display: 'flex', minHeight: '100px', color: '#800000', padding: 0, justifyContent: 'space-between' }}>
             <Box className={buttonsLeftGroup}>
               <Button className={burgerLink}>
                 <svg width="21" height="16" viewBox="0 0 21 16" fill="none" xmlns="http://www.w3.org/2000/svg">
