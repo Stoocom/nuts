@@ -14,7 +14,8 @@ const useStyles =  makeStyles((theme) => ({
     flex: 1,
     flexDirection: 'row',
     opacity: 1,
-    zIndex: 10
+    zIndex: 10,
+    position: 'relative'
   },
   slider_img: {
     height: '700px',
@@ -24,15 +25,13 @@ const useStyles =  makeStyles((theme) => ({
     opacity: 1,
     objectFit: 'cover',
     backgroundColor: '#000',
-  },
-  links_slider: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    display: 'flex',
-    flexWrap: 'wrap'
+    [theme.breakpoints.down('md')]: {
+      height: '650px',
+      objectPosition: '10%'
+    },
+    [theme.breakpoints.down('xs')]: {
+      height: '550px'
+    },
   },
   links__active: {
     borderRadius: 0,
@@ -52,17 +51,16 @@ const useStyles =  makeStyles((theme) => ({
   },
 }));
 
-
 const img = [
   { key: '124', src: foto },
 ]
-
 
 function Images_block() {
   const { slider, slider_img } = useStyles();
   const [activeUrl] = useState(foto);
   return (
     <Box className={slider}>
+  
         <img
           className={slider_img}
           key={img[0].key}

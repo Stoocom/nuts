@@ -70,13 +70,91 @@ const useStyles =  makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       flex: 4, 
     }
+  },
+  text_box: {
+    position: 'absolute',
+    top: '170px',
+    left: '5%',
+    width: '90%',
+    height: '500px',
+    display: 'flex',
+    flexWrap: 'wrap',
+    zIndex: 20,
+    flexDirection: 'column',
+    justifyContent: 'start',
+    color: '#000000'
+  },
+  box_title: {
+    fontSize: 'calc(12px + 44 * (100vmin / 1200))', 
+    lineHeight: '5vmin',
+    fontFamily: 'Philosopher',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+      lineHeight: '8vmin',
+    },
+    [theme.breakpoints.up('md')]: {
+      textAlign: 'start',
+      lineHeight: '5vmin',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '56px',
+    },
+  },
+  box_text: {
+    marginTop: 50,
+    fontSize: 'calc(4px + 20 * (100vmin / 1200))',
+    lineHeight: '3vmin',
+    fontWeight: 300,
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+      lineHeight: '2.5vmin',
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '30px',
+    },
+  },
+  box_button: {
+    marginTop: 50,
+    fontSize: '12px',
+    fontWeight: 500,
+    border: '1px solid #99D967',
+    backgroundColor: "#99D967",
+    color: "#FFFFFF",
+    borderRadius: '0',
+    width: '45%',
+    height: '70px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: "center",
+    "&:hover": {
+      color: '#99D967',
+      backgroundColor: "#FFFFFF",
+    },
+    [theme.breakpoints.down('sm')]: {
+      margin: '0 auto',
+      fontSize: '14px',
+      marginTop: 50,
+      height: '50px',
+    },
+    [theme.breakpoints.up('sm')]: {
+      marginTop: 50,
+      fontSize: '18px',
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '25px',
+      width: '40%',
+    },
+    [theme.breakpoints.up('lg')]: {
+      width: '45%',
+    },
   }
 }));
 
 
 
 function Header() {
-  const { buttonsLeftGroup, burgerLink, buttonsGroup, personalRightLink, personalLeftLink, centralHomeLink } = useStyles();
+  const { buttonsLeftGroup, burgerLink, buttonsGroup, personalRightLink, personalLeftLink, centralHomeLink, 
+    text_box, box_title, box_text, box_button } = useStyles();
   return (
       <AppBar position='static' style={{ background: '#FFFFFF', padding: '0 calc(50% - 585px)' }} >
           <Toolbar style={{ display: 'flex', minHeight: '100px', color: '#800000', padding: 0, justifyContent: 'space-between' }}>
@@ -139,11 +217,23 @@ function Header() {
                 <svg width="27" height="29" viewBox="0 0 27 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M21.9712 6.98603H17.692V5.49614C17.692 2.46555 15.3869 0 12.5533 0C9.71984 0 7.41485 2.46555 7.41485 5.49614V6.98603H3.72788C3.41698 6.98603 3.1648 7.25552 3.1648 7.58829L0 27.703C0 28.0358 0.251958 28.3054 0.563361 28.3054H25.462C25.7732 28.3054 26.0255 28.0358 26.0255 27.703L22.5344 7.58829C22.5344 7.25546 22.2823 6.98603 21.9712 6.98603ZM8.54079 5.49614C8.54079 3.12965 10.341 1.20458 12.5531 1.20458C14.7656 1.20458 16.5657 3.13001 16.5657 5.49614V6.98603H8.54079V5.49614ZM24.8993 27.1008H1.12622L4.29062 8.19031H7.41435V10.8425C7.14267 11.0371 6.96405 11.3678 6.96405 11.7435C6.96405 12.3421 7.41732 12.8276 7.97743 12.8276C8.53687 12.8276 8.99098 12.3425 8.99098 11.7435C8.99098 11.3675 8.81186 11.0371 8.54029 10.8425V8.19031H16.566V10.8425C16.2943 11.0371 16.1154 11.3678 16.1154 11.7435C16.1154 12.3421 16.5689 12.8276 17.129 12.8276C17.6885 12.8276 18.1425 12.3425 18.1425 11.7435C18.1425 11.3675 17.9631 11.0371 17.6917 10.8425V8.19031H21.408L24.8993 27.1008Z" fill="black"/>
                 </svg>
-              </Button>
+              </Button>      
+           </Box >
+            <Box className={text_box}>
+              <Box className={box_title}>
+                Отборные орехи <br/> и сухофрукты
+              </Box>
+              <Box className={box_text}>
+                Первая бесплатная доставка <br/> всем новым покупателям
+              </Box>
               
-
-            </Box >
+                <Box className={box_button}>
+                  Перейти к покупкам
+                </Box>
+           
+            </Box>
           </Toolbar>
+          
         {/* <Toolbar style={{ fontSize: '100%', lineHeight: '2rem', color: '#800000', padding: 0, justifyContent: 'space-between', alignItems: 'center' }}>
           <Box sx={{ flex: 2, display: 'flex', justifyContent: 'center' }}>
               <Box style={{ fontSize: '1rem', width: "100%", color: '#08194D', display: 'flex', justifyContent: 'start' }}>
