@@ -4,6 +4,7 @@ import ImagesBlock from './components/Images_block';
 import TopWaveBlock from './components/TopWave_block';
 import Catalog from './components/Catalog';
 import DownWave from './components/DownWave';
+import NoteBlock from './components/NoteBlock';
 import './App.css';
 
 // function getUrl(relativeUrl, prefix) {
@@ -29,9 +30,9 @@ function App() {
         <TopWaveBlock />
         <Catalog />
         <DownWave />
-        <div className="New">
-          <ImagesBlock />
-        </div>
+    
+          <NoteBlock />
+      
       </div>
     </section>
   );

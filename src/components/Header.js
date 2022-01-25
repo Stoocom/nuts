@@ -126,9 +126,11 @@ const useStyles =  makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: "center",
+    transition: '0.4s',
     "&:hover": {
       color: '#99D967',
       backgroundColor: "#FFFFFF",
+      
     },
     [theme.breakpoints.down('sm')]: {
       margin: '0 auto',
@@ -227,9 +229,9 @@ function Header() {
                 Первая бесплатная доставка <br/> всем новым покупателям
               </Box>
               
-                <Box className={box_button}>
+                <Button className={box_button}>
                   Перейти к покупкам
-                </Box>
+                </Button>
            
             </Box>
           </Toolbar>
