@@ -7,8 +7,6 @@ const useStyles =  makeStyles((theme) => ({
   slider: {
     backgroundColor: '#F6F6F6',
     width: '100%',
-    flex: 1,
-    opacity: 1,
     zIndex: 1,
     marginTop: '-17%',
     position: 'relative',
@@ -18,24 +16,51 @@ const useStyles =  makeStyles((theme) => ({
     flexDirection: 'row'
   },
   backImage: {
-    marginTop: '16%',
-    width: '40%',
+    marginTop: '12%',
+    width: '35%',
     position: 'absolute',
   },
   backGreenImage: {
     marginTop: '16%',
-    width: '40%',
+    width: '35%',
     
   },
   textBox: {
-    marginTop: '16%',
-    width: '60%'
+    marginTop: '20%',
+    marginLeft: '5%',
+    width: '65%',
+    left: '5%',
+    color: '#000000',
+    zIndex: '20',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'start',
+    fontWeight: 300,
+  },
+  textBox__bon_h3: {
+    fontSize: 'calc(24px + 20 * (100vmin / 1200))',
+    lineHeight: '6vmin',
+    [theme.breakpoints.down('md')]: {
+      fontSize: 'calc(18px + 16 * (100vmin / 1200))',
+      lineHeight: '5vmin',
+    },
+  },
+  textBox__bon: {
+    color: '#559C1D',
+  },
+  textBox__bon_p: {
+    fontSize: 'calc(18px + 10 * (100vmin / 1200))',
+    lineHeight: '3vmin',
+    [theme.breakpoints.down('md')]: {
+      fontSize: 'calc(10px + 10 * (100vmin / 1200))',
+    },
   }
 }));
 
 
 function NoteBlock() {
-  const { slider, backImage, backGreenImage, textBox } = useStyles();
+  const { slider, backImage, backGreenImage, 
+    textBox, textBox__bon, textBox__bon_h3, textBox__bon_p } = useStyles();
   return (
     <Box className={slider}>
       <Box className={backImage}>
@@ -62,8 +87,13 @@ function NoteBlock() {
         </svg>
       </Box>
       <Box className={textBox}>
-
-        </Box>
+        <h3 className={textBox__bon_h3}>
+          <span className={textBox__bon}>Bon Appetite</span> - магазин полезных продуктов
+        </h3>
+        <p className={textBox__bon_p}>
+          Наша команда каждый день старается, <br/> чтобы вы получили качественные орешки, <br/> а также хорошую и быструю доставку.
+        </p>
+      </Box>
       <Box className={backGreenImage}>
           <svg viewBox="0 0 592 875" fill="none"       xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" clipRule="evenodd" d="M439.433 0.320663C528.633 -4.43273 610.858 44.3782 681.478 99.0589C750.335 152.374 804.234 222.061 832.271 304.491C860.595 387.769 869.367 479.318 838.873 561.826C809.045 642.535 736.333 694.304 668.587 747.377C598.07 802.62 528.915 870.339 439.433 874.749C348.229 879.244 268.546 822.448 193.252 770.803C115.882 717.735 15.9859 667.009 1.46066 574.341C-13.0203 481.956 83.9791 414.14 124.106 329.667C157.114 260.182 162.231 179.465 215.437 123.894C275.882 60.7608 352.136 4.97257 439.433 0.320663Z" fill="#D6F6BC" fillOpacity="0.81"/>

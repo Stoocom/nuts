@@ -12,7 +12,7 @@ const useStyles =  makeStyles((theme) => ({
     width: "100%",
     height: "100%",
     position: "relative",
-    marginTop: '-3px'
+    margin: 0,
   },
   card_container: {
     boxShadow: '4px 4px 6px rgba(116, 111, 111, 0.25)',
