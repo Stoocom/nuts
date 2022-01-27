@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     left: 0,
     width: '100vw',
-    height: '580px',
+    height: '100vh',
     position: 'absolute',
     backgroundColor: '#C5E0B0',
     zIndex: '30',
