@@ -7,12 +7,13 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     left: 0,
     width: '100vw',
-    height: '100vh',
+    height: '580px',
     position: 'absolute',
     backgroundColor: '#C5E0B0',
     zIndex: '30',
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+   
   },
   buttons: {
     width: '100vw',
@@ -26,8 +27,8 @@ const useStyles = makeStyles((theme) => ({
   },
   closeButton: {
     position: 'absolute',
-    top: 0,
-    left: 0,
+    top: 10,
+    left: 10,
     padding: '20px'
   }
 }));
