@@ -27,7 +27,7 @@ const useStyles =  makeStyles((theme) => ({
   },
   textBox: {
     marginTop: '17%',
-    marginLeft: '5%',
+    marginLeft: '8%',
     width: '65%',
     left: '5%',
     color: '#000000',
