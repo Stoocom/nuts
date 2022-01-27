@@ -23,7 +23,7 @@ const useStyles =  makeStyles((theme) => ({
   backGreenImage: {
     marginTop: '16%',
     width: '35%',
-    
+    marginBottom: '50px'
   },
   textBox: {
     marginTop: '17%',
@@ -41,6 +41,7 @@ const useStyles =  makeStyles((theme) => ({
     },
   },
   textBox__bon_h3: {
+    fontFamily: 'Philosopher',
     fontSize: 'calc(24px + 20 * (100vmin / 1200))',
     lineHeight: '6vmin',
     [theme.breakpoints.down('sm')]: {
@@ -59,14 +60,15 @@ const useStyles =  makeStyles((theme) => ({
     },
   },
   textBox__sign: {
-    marginTop: '50px',
+    marginTop: '100px',
     width: '227px',
     [theme.breakpoints.down('sm')]: {
-      marginTop: '20px',
+      marginTop: '30px',
       width: '180px',
+      marginBottom: '10px',
     },
     [theme.breakpoints.up('lg')]: {
-      marginTop: '150px'
+      marginTop: '200px'
     },
   }
 }));
@@ -102,7 +104,7 @@ function NoteBlock() {
       </Box>
       <Box className={textBox}>
         <h3 className={textBox__bon_h3}>
-          <span className={textBox__bon}>BON APPETITE</span> - магазин полезных продуктов
+          <span className={textBox__bon}>BON APPETITE</span> — магазин полезных продуктов
         </h3>
         <p className={textBox__bon_p}>
           Наша команда каждый день старается, <br/> чтобы вы получили качественные орешки, <br/> а также хорошую и быструю доставку.
@@ -114,7 +116,7 @@ function NoteBlock() {
         </Box>
       </Box>
       <Box className={backGreenImage}>
-          <svg viewBox="0 0 592 875" fill="none"       xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 592 875" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path fillRule="evenodd" clipRule="evenodd" d="M439.433 0.320663C528.633 -4.43273 610.858 44.3782 681.478 99.0589C750.335 152.374 804.234 222.061 832.271 304.491C860.595 387.769 869.367 479.318 838.873 561.826C809.045 642.535 736.333 694.304 668.587 747.377C598.07 802.62 528.915 870.339 439.433 874.749C348.229 879.244 268.546 822.448 193.252 770.803C115.882 717.735 15.9859 667.009 1.46066 574.341C-13.0203 481.956 83.9791 414.14 124.106 329.667C157.114 260.182 162.231 179.465 215.437 123.894C275.882 60.7608 352.136 4.97257 439.433 0.320663Z" fill="#D6F6BC" fillOpacity="0.81"/>
           </svg>
       </Box>
