@@ -12,16 +12,14 @@ if (process.env.NODE_ENV === "production") {
     app.use(favicon(__dirname + '/build/favicon.ico'));
     console.log(process.env.NODE_ENV === "production");
 
-    app.get('/', (req, res) => {
-      console.log("api");
-      console.log(process.env.NODE_ENV);
-      res.send({ message: "Hello world"});
-    });
-
-    app.get('/api', (req, res) => {
-      console.log("api_new");
-      console.log(process.env.NODE_ENV);
-      res.send({ "message": "Hello world"});
+    app.get('/catalog', async (req, res) => {
+      console.log("catalog");
+      try {
+        const types = await pool.query('SELECT * FROM types');
+        res.json(types.rows);
+      } catch (err) {
+        console.error(err.message);
+      }
     });
 
     app.get('/types', async (req, res) => {

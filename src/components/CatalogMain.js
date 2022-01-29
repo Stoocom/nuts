@@ -1,22 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Box, Grid, Card, CardMedia, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 //import logo from './logo.png'; 
 import nuts from "../images/catalog/types/type_nuts.jpg";
 import dried_fruits from "../images/catalog/types/type_dried_fruits.jpg";
 import spices from "../images/catalog/types/type_spices.jpg";
-import { getAllTypes } from "../store/typesSelector";
-import { useSelector, shallowEqual } from "react-redux";
-import { addAllTypesThunk } from '../store/typesReducer';
-import store from "../store";
 
 const useStyles = makeStyles((theme) => ({
   main: {
-    backgroundColor: "#FDFDFC",
+    backgroundColor: "#F6F6F6",
     width: "100%",
     height: "100%",
     position: "relative",
     margin: 0,
+    paddingTop: '200px'
   },
   card_container: {
     boxShadow: '4px 4px 6px rgba(116, 111, 111, 0.25)',
@@ -69,40 +66,32 @@ const useStyles = makeStyles((theme) => ({
 const imageTypes = [
   { type: nuts }, { type: dried_fruits }, { type: spices }
 ];
-//const testArray = [{ id: 1, name: "nuts" }, { id: 2, name: "dried_fruits" }, { id: 3, name: "spices" }];
+const testArray = [{ id: 1, name: "nuts" }, { id: 2, name: "dried_fruits" }, { id: 3, name: "spices" }];
 
 function Catalog() {
   const { main, card_container, item_media, title_box, buttons_container, button_item } = useStyles();
-  const { types } = useSelector(getAllTypes, shallowEqual);
-
-
-  const requestTypes = () => {
-    store.dispatch(addAllTypesThunk());
-  };
-
+  const [types, setTypes] = useState(testArray);
 
   useEffect(() => {
-    //console.log(imageTypes[0].type);
-    console.log('useEffect types');
-    // fetch('types').then(res => res.json())
-    //   .then(data => setTypes(data))
-    //   .catch((err) => console.log(err));
-    requestTypes();
-
+    console.log(imageTypes[0].type);
+    console.log('useEffect CatalogPage');
+    fetch('types').then(res => res.json())
+      .then(data => setTypes(data))
+      .catch((err) => console.log(err));
   }, [])
   return (
     <Box className={main}>
       <Container maxWidth="lg" style={{ padding: 30 }}>
         <Grid container spacing={8}>
           {
-            types
+            types.length
               ?
               types.map((card) => (
-                <Grid item key={card.type_id} xs={12} sm={6} md={4}>
+                <Grid item key={card.id} xs={12} sm={6} md={4}>
                   <Card className={card_container}>
                     <CardMedia
                       className={item_media}
-                      image={imageTypes[card.type_id - 1].type}
+                      image={imageTypes[card.id - 1].type}
                       title="image title"
                     />
                     <Box className={title_box}>
