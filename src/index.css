@@ -2,5 +2,7 @@
 body {
   margin: 0;
   font-family: 'Roboco', sans-serif;
+  padding: 0px calc(50% - 800px);
+  min-width: 350px;
 }
 

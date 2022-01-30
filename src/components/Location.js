@@ -6,27 +6,30 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles((theme) => ({
   main: {
     padding: '0px calc(50% - 585px)',
-    position: 'absolute',
     zIndex: 1,
-    marginTop: '5%',
     fontSize: 18,
     lineHeight: '23px',
-    marginLeft: 10,
+    //paddingLeft: '4%',
+    //paddingTop: '5%',
     textDecoration: 'none',
     fontWeight: 300,
+    backgroundColor: '#F6F6F6'
   },
   path: {
     display: 'flex',
     justifyContent: 'flex-start',
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10
+    marginBottom: 10,
+    paddingTop: '5%',
+    paddingLeft: '3%'
   },
   links: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'start',
+    alignItems: 'center',
+    paddingLeft: '3%'
   }
 
 }))
@@ -70,7 +73,7 @@ const Location = (props) => {
 
             if (namesArray.length === index + 1) {
               return (
-                <Box>
+                <Box key={index}>
                   <LinkRouter style={{ textDecoration: 'none', color: '#000000' }} to={`${split(locationArray, index)}`} key={index} >
                     {el
                       ? <span>{namesArray[index]}</span>
@@ -81,7 +84,7 @@ const Location = (props) => {
               )
             } else {
               return (
-                <Box>
+                <Box key={index}>
                   <LinkRouter to={`${split(locationArray, index)}`} key={index}>
                     {el
                       ? <span>{namesArray[index]}</span>

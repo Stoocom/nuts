@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Container, Box, Grid, Card, CardMedia, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-//import logo from './logo.png'; 
 import nuts from "../images/catalog/types/type_nuts.jpg";
 import dried_fruits from "../images/catalog/types/type_dried_fruits.jpg";
 import spices from "../images/catalog/types/type_spices.jpg";

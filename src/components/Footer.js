@@ -10,7 +10,6 @@ const useStyles =  makeStyles((theme) => ({
     margin: 0
   },
   item: {
-    height: "216px",
     width: '170px',
     margin: '0 auto',
     marginBottom: 10,

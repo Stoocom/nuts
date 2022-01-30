@@ -12,11 +12,11 @@ if (process.env.NODE_ENV === "production") {
     app.use(favicon(__dirname + '/build/favicon.ico'));
     console.log(process.env.NODE_ENV === "production");
 
-    app.get('/catalog', async (req, res) => {
-      console.log("catalog");
+    app.get('/products', async (req, res) => {
+      console.log("products");
       try {
-        const types = await pool.query('SELECT * FROM types');
-        res.json(types.rows);
+        const products = await pool.query('SELECT * FROM products');
+        res.json(products.rows);
       } catch (err) {
         console.error(err.message);
       }
@@ -29,16 +29,6 @@ if (process.env.NODE_ENV === "production") {
         res.json(types.rows);
       } catch (err) {
         console.error(err.message);
-      }
-    });
-
-    app.get('/users', async (req, res) => {
-      console.log("users")
-      try {
-          const users = await pool.query('SELECT * FROM users');
-          res.json(users.rows);
-      } catch (err) {
-          console.error(err.message);
       }
     });
 
@@ -76,6 +66,16 @@ app.get('/', (req, res) => {
     }
   });
   
+  app.get('/products', async (req, res) => {
+    console.log("products");
+    try {
+      const products = await pool.query('SELECT * FROM products');
+      res.json(products.rows);
+    } catch (err) {
+      console.error(err.message);
+    }
+  });
+
   app.get('/api', (req, res) => {
     console.log("api_new");
     console.log(process.env.NODE_ENV);
