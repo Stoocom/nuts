@@ -74,7 +74,6 @@ function Catalog() {
   const { main, card_container, item_media, title_box, buttons_container, button_item } = useStyles();
   const { types } = useSelector(getAllTypes, shallowEqual);
 
-
   const requestTypes = () => {
     store.dispatch(addAllTypesThunk());
   };

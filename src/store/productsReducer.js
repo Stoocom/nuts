@@ -17,13 +17,22 @@ export const addAllProductsThunk = createAsyncThunk(
 let initialState = {
   products: null,
   isLoading: false,
+  filtered: null,
   error: null
 }
 
 export const productsReducer = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    filterByType: (state, action) => {
+      state.filtered = state.products.filter(el => el.product_id === action.payload);
+    },
+    filterBySearchWord: (state, action) => {
+      let regexp = new RegExp(action.payload, 'i');
+      state.filtered = state.products.filter(el => regexp.test(el.product_name))
+    },
+  },
   extraReducers: {
     [addAllProductsThunk.pending]: (state) => {
       console.log('pending');
@@ -34,6 +43,7 @@ export const productsReducer = createSlice({
       state.isLoading = false;
       state.error = null;
       state.products = payload;
+      state.filtered = payload;
     },
     [addAllProductsThunk.rejected]: (state, action) => {
       console.log('rejected');
@@ -42,5 +52,7 @@ export const productsReducer = createSlice({
     }
   }
 })
+
+//export const { filterByType, filterBySearchWord } = productsReducer.actions
 
 export default productsReducer.reducer

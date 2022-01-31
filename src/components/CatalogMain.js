@@ -119,13 +119,13 @@ const imageTypes = [
   { product_name: keshiu }, { product_name: keshiu }, { product_name: keshiu },
   { product_name: arahis }, { product_name: arahis }, { product_name: arahis },
 ];
-const testArray = [
-  { product_id: 1, product_name: "Миндаль" }, { product_id: 2, product_name: "Миндаль" }, { product_id: 3, product_name: "Миндаль" },
-  { product_id: 4, product_name: "Грецкий орех" }, { product_id: 5, product_name: "Грецкий орех" }, { product_id: 6, product_name: "Грецкий орех" },
-  { product_id: 7, product_name: "Фундук" }, { product_id: 8, product_name: "Фундук" }, { product_id: 9, product_name: "Фундук" },
-  { product_id: 10, product_name: "Кешью" }, { product_id: 11, product_name: "Кешью" }, { product_id: 12, product_name: "Кешью" },
-  { product_id: 13, product_name: "Арахис" }, { product_id: 14, product_name: "Арахис" }, { product_id: 15, product_name: "Арахис" },
-];
+// const testArray = [
+//   { product_id: 1, product_name: "Миндаль" }, { product_id: 2, product_name: "Миндаль" }, { product_id: 3, product_name: "Миндаль" },
+//   { product_id: 4, product_name: "Грецкий орех" }, { product_id: 5, product_name: "Грецкий орех" }, { product_id: 6, product_name: "Грецкий орех" },
+//   { product_id: 7, product_name: "Фундук" }, { product_id: 8, product_name: "Фундук" }, { product_id: 9, product_name: "Фундук" },
+//   { product_id: 10, product_name: "Кешью" }, { product_id: 11, product_name: "Кешью" }, { product_id: 12, product_name: "Кешью" },
+//   { product_id: 13, product_name: "Арахис" }, { product_id: 14, product_name: "Арахис" }, { product_id: 15, product_name: "Арахис" },
+// ];
 
 function CatalogMain() {
   const { main, title, card_container, item_media, title_box_new, buttons_container, button_item,
@@ -133,13 +133,14 @@ function CatalogMain() {
 
   const [typeName] = useState("Каталог");
   //const [products] = useState(testArray);
-  const { products } = useSelector(getAllProducts, shallowEqual);
+  const { filtered } = useSelector(getAllProducts, shallowEqual);
 
   const requestProducts = () => {
     store.dispatch(addAllProductsThunk());
   };
   useEffect(() => {
     console.log('useEffect CatalogProducts');
+    console.log(filtered);
     // fetch('/products').then(res => res.json())
     //   .then(data => setTypes(data))
     //   .catch((err) => console.log(err));
@@ -159,9 +160,9 @@ function CatalogMain() {
       <Container maxWidth="lg" style={{ padding: 30 }}>
         <Grid container spacing={8}>
           {
-            products
+            filtered
               ?
-              products.map((card) => (
+              filtered.map((card) => (
                 <Grid item key={card.product_id} xs={12} sm={6} md={4}>
                   <Card className={card_container}>
                     <CardMedia
