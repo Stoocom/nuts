@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Location } from '../components/Location';
 import CatalogMain from '../components/CatalogMain';
 import TypesMenu from '../components/TypesMenu';
-//import Catalog from '../components/Catalog';
+//import MiddleWave from '../components/MiddleWave';
 
 function CatalogPage() {
 

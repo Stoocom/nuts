@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import MiddleWave from '../components/MiddleWave';
 import { Container, Box, Grid, Card, CardMedia, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { getAllProducts } from "../store/productsSelector";
@@ -35,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
     border: '0.2px solid #DDDDDD',
     height: '373px',
     width: '270px',
-    margin: 'auto'
+    margin: 'auto',
+    zIndex: 40,
   },
   button_box: {
     width: '100%',
@@ -149,7 +151,7 @@ function CatalogMain() {
 
   return (
     <Box className={main}>
-
+      <MiddleWave/>
       {/* <TypesMenu types={types ? types : testArrayTypes}/> */}
 
       { typeName
@@ -163,7 +165,7 @@ function CatalogMain() {
             products
               ?
               products.map((card) => (
-                <Grid item key={card.product_id} xs={12} sm={6} md={4}>
+                <Grid item key={card.product_id} style={{ zIndex: 50 }} xs={12} sm={6} md={4}>
                   <Card className={card_container}>
                     <CardMedia
                       className={item_media}

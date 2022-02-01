@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 50
   },
   mainList: {
-    padding: '15px 30px',
+    padding: '15px',
   },
   buttons: {
     display: 'flex',
