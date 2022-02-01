@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { AppBar, Box, Toolbar, Button, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import BurgerMenu from './BurgerMenu';
-import { getAllProducts } from "../store/productsSelector";
-import { useSelector, shallowEqual } from "react-redux";
+// import { getAllProducts } from "../store/productsSelector";
+// import { useSelector, shallowEqual } from "react-redux";
+// import { filterBySearchWord } from '../store/productsReducer'
 
 const useStyles = makeStyles((theme) => ({
   buttonsGroup: {
@@ -84,9 +85,9 @@ function Header() {
     personalLeftLink, centralHomeLink, buttonMinWidth } = useStyles();
 
   const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
-  const { filtered } = useSelector(getAllProducts, shallowEqual);
+  //const { filtered } = useSelector(getAllProducts, shallowEqual);
   console.log('Header');
-  console.log(filtered);
+  //console.log(filtered);
 
   // useEffect(() => {
   //   console.log('useEffect Header');

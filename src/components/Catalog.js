@@ -7,6 +7,8 @@ import spices from "../images/catalog/types/type_spices.jpg";
 import { getAllTypes } from "../store/typesSelector";
 import { useSelector, shallowEqual } from "react-redux";
 import { addAllTypesThunk } from '../store/typesReducer';
+import { changeLastType } from "../store/productsReducer";
+import { useNavigate } from 'react-router-dom';
 import store from "../store";
 
 const useStyles = makeStyles((theme) => ({
@@ -58,6 +60,11 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '0',
     width: '120px',
     height: '33px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontSize: '16px',
+    textDecoration: 'none',
     "&:hover": {
       color: '#99D967',
       backgroundColor: "#FFFFFF",
@@ -68,14 +75,22 @@ const useStyles = makeStyles((theme) => ({
 const imageTypes = [
   { type: nuts }, { type: dried_fruits }, { type: spices }
 ];
-//const testArray = [{ id: 1, name: "nuts" }, { id: 2, name: "dried_fruits" }, { id: 3, name: "spices" }];
+
+const testArray = [{ type_id: 1, name: "nuts" }, { type_id: 2, name: "dried_fruits" }, { type_id: 3, name: "spices" }];
 
 function Catalog() {
+  let navigate = useNavigate();
   const { main, card_container, item_media, title_box, buttons_container, button_item } = useStyles();
   const { types } = useSelector(getAllTypes, shallowEqual);
 
   const requestTypes = () => {
     store.dispatch(addAllTypesThunk());
+  };
+  
+  const changeType = (id) => {
+    console.log('changeType to ' + id);
+    store.dispatch(changeLastType(id));
+    navigate('/catalog');
   };
 
 
@@ -107,14 +122,33 @@ function Catalog() {
                       {card.name}
                     </Box>
                     <Box className={buttons_container}>
-                      <Button className={button_item}>
+                      <Button className={button_item} onClick={() => {changeType(card.type_id);}}>
                         Перейти
                       </Button>
                     </Box>
                   </Card>
                 </Grid>
               ))
-              : <div>No Data</div>
+              :
+              testArray.map((card) => (
+                <Grid item key={card.type_id} xs={12} sm={6} md={4}>
+                  <Card className={card_container}>
+                    <CardMedia
+                      className={item_media}
+                      image={imageTypes[card.type_id - 1].type}
+                      title="image title"
+                    />
+                    <Box className={title_box}>
+                      {card.name}
+                    </Box>
+                    <Box className={buttons_container}>
+                      <Button className={button_item} onClick={() => {changeType(card.type_id);}}>
+                        Перейти
+                      </Button>
+                    </Box>
+                  </Card>
+                </Grid>
+              ))
           }
         </Grid>
       </Container>

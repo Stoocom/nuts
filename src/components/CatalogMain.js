@@ -133,14 +133,14 @@ function CatalogMain() {
 
   const [typeName] = useState("Каталог");
   //const [products] = useState(testArray);
-  const { filtered } = useSelector(getAllProducts, shallowEqual);
+  const products = useSelector(getAllProducts, shallowEqual);
 
   const requestProducts = () => {
     store.dispatch(addAllProductsThunk());
   };
   useEffect(() => {
     console.log('useEffect CatalogProducts');
-    console.log(filtered);
+    console.log(products);
     // fetch('/products').then(res => res.json())
     //   .then(data => setTypes(data))
     //   .catch((err) => console.log(err));
@@ -160,9 +160,9 @@ function CatalogMain() {
       <Container maxWidth="lg" style={{ padding: 30 }}>
         <Grid container spacing={8}>
           {
-            filtered
+            products
               ?
-              filtered.map((card) => (
+              products.map((card) => (
                 <Grid item key={card.product_id} xs={12} sm={6} md={4}>
                   <Card className={card_container}>
                     <CardMedia

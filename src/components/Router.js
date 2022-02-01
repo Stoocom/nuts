@@ -11,7 +11,7 @@ function Router() {
       <Header />
       <Routes>
         <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/catalog" element={<CatalogPage />} />
+        <Route exact path="catalog" element={<CatalogPage />} />
         <Route path="*" element = {
           <main style={{ padding: "1rem" }}>
             <p>Sorry There's nothing on this page!</p>

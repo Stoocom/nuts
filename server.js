@@ -32,6 +32,16 @@ if (process.env.NODE_ENV === "production") {
       }
     });
 
+    app.get('/types/:id', async (req, res) => {
+      console.log("types"+ req.params.id);
+      try {
+        const products = await pool.query(`SELECT * FROM products WHERE type_id === ${req.params.id}`);
+        res.json(products.rows);
+      } catch (err) {
+        console.error(err.message);
+      }
+    });
+
     app.get('*', (req, res) => {
       res.sendFile(path.join(__dirname, '/build/index.html'));
     });
