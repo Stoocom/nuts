@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 26,
   },
   buttons_container: {
-    marginTop: 83,
+    marginTop: 50,
     width: '100%',
     backgroundColor: "#FFFFFF",
     display: 'flex',
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#99D967",
     color: "#FFFFFF",
     borderRadius: '0',
-    width: '152px',
+    width: '200px',
     height: '33px',
     "&:hover": {
       color: '#99D967',
@@ -80,15 +80,25 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Philosopher",
     fontWeight: 600,
     color: 'black'
+  },
+  err_box: {
+    marginTop: 10,
+    display: 'flex',
+    justifyContent: 'center',
+    fontFamily: 'Roboto',
+    width: '100%',
+    height: 25,
+    color: 'red'
   }
 }))
 
 function SignupPage() {
   const { main, title, formArea, form_box, input, buttons_container,
-    button_item, notes, notes__text, notes__button } = useStyles();
+    button_item, notes, notes__text, notes__button, err_box } = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
@@ -96,7 +106,7 @@ function SignupPage() {
     console.log('handleSignup');
 
     if (password !== confirmPassword) {
-      console.log('Пароли не совпадают');
+      setError('Пароли не совпадают');
       return;
     }
     try {
@@ -106,16 +116,14 @@ function SignupPage() {
         body: JSON.stringify({ email, password })
       });
       const data = await response.json();
-      console.log(data.token);
+      if (data.message) {
+        setError(data.message);
+      }
       if (data.token) {
-        console.log("navigate");
         localStorage.setItem("user", JSON.stringify(data));
         navigate("/");
         window.location.reload();
       }
-
-      //navigate("/");
-      //window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -149,6 +157,11 @@ function SignupPage() {
               autoComplete="confirm-password"
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
+            {
+              error
+              ? <Box className={err_box}> {error} </Box>
+              : <Box className={err_box}></Box>
+            }
             <Box className={buttons_container}>
               <Button type="submit" className={button_item}>
                 Зарегистрироваться
