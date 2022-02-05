@@ -1,12 +1,12 @@
 import productsReducer from './productsReducer';
 import typesReducer from './typesReducer';
-// import userReducer from './userReducer';
+import userReducer from './userReducer';
 import { configureStore } from '@reduxjs/toolkit';
 
 const reducers = ({
     products: productsReducer,
     types: typesReducer,
-    // user: userReducer    
+    user: userReducer    
  });
 
 export const store = configureStore({

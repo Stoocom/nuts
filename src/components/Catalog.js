@@ -88,7 +88,7 @@ function Catalog() {
   };
   
   const changeType = (id) => {
-    console.log('changeType to ' + id);
+    //console.log('changeType to ' + id);
     store.dispatch(changeLastType(id));
     navigate('/catalog');
   };
@@ -96,7 +96,7 @@ function Catalog() {
 
   useEffect(() => {
     //console.log(imageTypes[0].type);
-    console.log('useEffect types');
+    //console.log('useEffect types');
     // fetch('types').then(res => res.json())
     //   .then(data => setTypes(data))
     //   .catch((err) => console.log(err));

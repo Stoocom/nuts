@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { AppBar, Box, Toolbar, Button, Link } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import { AppBar, Box, Toolbar, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import BurgerMenu from './BurgerMenu';
-// import { getAllProducts } from "../store/productsSelector";
-// import { useSelector, shallowEqual } from "react-redux";
-// import { filterBySearchWord } from '../store/productsReducer'
+import { Link } from "react-router-dom";
+import { useSelector, shallowEqual } from "react-redux";
+import { getAuth } from "../store/userSelector";
+import { authOn } from "../store/userReducer";
+import store from "../store";
 
 const useStyles = makeStyles((theme) => ({
   buttonsGroup: {
@@ -85,17 +87,20 @@ function Header() {
     personalLeftLink, centralHomeLink, buttonMinWidth } = useStyles();
 
   const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
-  //const { filtered } = useSelector(getAllProducts, shallowEqual);
-  console.log('Header');
-  //console.log(filtered);
+  const [currentUser, setCurrentUser] = useState(undefined);
+  const { isAuth } = useSelector(getAuth, shallowEqual);
 
-  // useEffect(() => {
-  //   console.log('useEffect Header');
-  //   if (products) {
-  //     setFiltered(products);
-  //     console.log(filteredProds);
-  //   }
-  // }, [products]);
+  console.log(isAuth);
+
+  useEffect(() => {
+    console.log('Header ' + isAuth);
+    const userWithToken = JSON.parse(localStorage.getItem("user"));
+    console.log(userWithToken);
+    if (userWithToken) {
+      setCurrentUser(userWithToken);
+      store.dispatch(authOn());
+    }
+  }, []);
 
   return (
     <>
@@ -131,16 +136,16 @@ function Header() {
             </svg>
           </Box>
           <Box className={buttonsGroup}>
-            <Link color="textPrimary" href="/catalog" onClick={() => console.log('Click')}>
+            <Link color="textPrimary" to={"/catalog"}>
               Каталог
             </Link>
-            <Link color="textPrimary" href="#" onClick={() => console.log('Click')}>
+            <Link color="textPrimary" to={"/login"}>
               О нас
             </Link>
-            <Link color="textPrimary" href="#" onClick={() => console.log('Click')}>
+            <Link color="textPrimary" to={"/signup"}>
               Акции
             </Link>
-            <Link color="textPrimary" href="#" onClick={() => console.log('Click')}>
+            <Link color="textPrimary" to={"/catalog"}>
               Доставка
             </Link>
           </Box >
@@ -150,12 +155,35 @@ function Header() {
                 <path d="M25.8416 26.1278L17.9311 17.8851C19.5734 15.9842 20.5831 13.4782 20.5831 10.7239C20.5831 4.81107 15.966 0 10.2915 0C4.61709 0 0 4.81107 0 10.7239C0 16.6366 4.61714 21.4477 10.2916 21.4477C12.9349 21.4477 15.3398 20.3956 17.1642 18.6832L25.0746 26.9259C25.1808 27.0366 25.3194 27.0918 25.4581 27.0918C25.5968 27.0918 25.7354 27.0366 25.8416 26.927C26.0528 26.7058 26.0528 26.349 25.8416 26.1278ZM10.2916 20.3189C5.21407 20.3189 1.08336 16.0147 1.08336 10.7239C1.08336 5.43312 5.21402 1.12886 10.2916 1.12886C15.3691 1.12886 19.4998 5.43307 19.4998 10.7239C19.4998 16.0146 15.3691 20.3189 10.2916 20.3189Z" fill="black" />
               </svg>
             </Button>
-            <Button className={`${personalRightLink} ${buttonMinWidth}`}>
-              <svg width="21" height="23" viewBox="0 0 27 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M13.4989 16.8953C17.742 16.8953 21.1943 13.1056 21.1943 8.44764C21.1943 2.99994 18.4615 0 13.4989 0C8.60761 0 5.80347 3.07913 5.80347 8.44764C5.80347 13.1056 9.25574 16.8953 13.4989 16.8953ZM13.4989 0.891778C19.0018 0.891778 20.157 5.00038 20.157 8.44764C20.157 12.614 17.1702 16.0035 13.4989 16.0035C9.82752 16.0035 6.84081 12.614 6.84081 8.44764C6.84081 5.62534 7.70554 0.891778 13.4989 0.891778Z" fill="black" />
-                <path d="M26.9917 24.7707C26.8756 20.4224 22.137 15.7402 21.9353 15.5433L21.3569 14.9783L21.059 15.6867C21.0415 15.7281 19.254 19.811 13.6001 19.8124H13.4963H13.4009C7.76521 19.8124 6.01252 15.8536 5.94032 15.686L5.64074 14.9811L5.06397 15.544C4.86231 15.7409 0.123734 20.4231 0.00838129 24.7721C-0.0978426 28.7837 0.829956 29.5571 1.41336 29.6619L25.5544 29.6698L25.6083 29.6598C26.1702 29.5556 27.0971 28.7823 26.9917 24.7707ZM1.66481 28.7773C1.49718 28.5982 0.965226 27.7878 1.04489 24.7907C1.13037 21.5375 4.23161 17.8683 5.33866 16.6605C6.176 17.9675 8.5121 20.7028 13.4009 20.7028H13.4955H13.5992C18.4864 20.7028 20.8241 17.9675 21.6606 16.6605C22.766 17.8676 25.8673 21.5375 25.9544 24.7907C26.0341 27.7878 25.5013 28.5982 25.3336 28.7773H1.66481Z" fill="black" />
-              </svg>
-            </Button>
+            {
+              isAuth
+                ? 
+                <Link to={"/profile"} style={{ display: 'flex', alignItems: 'center' }}>
+                  <svg width="21" height="23" viewBox="0 0 27 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.4989 16.8953C17.742 16.8953 21.1943 13.1056 21.1943 8.44764C21.1943 2.99994 18.4615 0 13.4989 0C8.60761 0 5.80347 3.07913 5.80347 8.44764C5.80347 13.1056 9.25574 16.8953 13.4989 16.8953ZM13.4989 0.891778C19.0018 0.891778 20.157 5.00038 20.157 8.44764C20.157 12.614 17.1702 16.0035 13.4989 16.0035C9.82752 16.0035 6.84081 12.614 6.84081 8.44764C6.84081 5.62534 7.70554 0.891778 13.4989 0.891778Z" fill="black" />
+                    <path d="M26.9917 24.7707C26.8756 20.4224 22.137 15.7402 21.9353 15.5433L21.3569 14.9783L21.059 15.6867C21.0415 15.7281 19.254 19.811 13.6001 19.8124H13.4963H13.4009C7.76521 19.8124 6.01252 15.8536 5.94032 15.686L5.64074 14.9811L5.06397 15.544C4.86231 15.7409 0.123734 20.4231 0.00838129 24.7721C-0.0978426 28.7837 0.829956 29.5571 1.41336 29.6619L25.5544 29.6698L25.6083 29.6598C26.1702 29.5556 27.0971 28.7823 26.9917 24.7707ZM1.66481 28.7773C1.49718 28.5982 0.965226 27.7878 1.04489 24.7907C1.13037 21.5375 4.23161 17.8683 5.33866 16.6605C6.176 17.9675 8.5121 20.7028 13.4009 20.7028H13.4955H13.5992C18.4864 20.7028 20.8241 17.9675 21.6606 16.6605C22.766 17.8676 25.8673 21.5375 25.9544 24.7907C26.0341 27.7878 25.5013 28.5982 25.3336 28.7773H1.66481Z" fill="black" />
+                  </svg>
+                </Link>
+                :
+                <Link to={"/login"} style={{ display: 'flex', alignItems: 'center' }}>
+                  <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                    width="21" height="21" viewBox="0 0 612 612">
+                    <g>
+                      <g id="_x36__30_">
+                        <g>
+                          <path d="M331.685,425.378c-7.478,7.479-7.478,19.584,0,27.043c7.479,7.478,19.584,7.478,27.043,0l131.943-131.962
+                            c3.979-3.979,5.681-9.276,5.412-14.479c0.269-5.221-1.434-10.499-5.412-14.477L358.728,159.56
+                            c-7.459-7.478-19.584-7.478-27.043,0c-7.478,7.478-7.478,19.584,0,27.042l100.272,100.272H19.125C8.568,286.875,0,295.443,0,306
+                            c0,10.557,8.568,19.125,19.125,19.125h412.832L331.685,425.378z M535.5,38.25H153c-42.247,0-76.5,34.253-76.5,76.5v76.5h38.25
+                            v-76.5c0-21.114,17.117-38.25,38.25-38.25h382.5c21.133,0,38.25,17.136,38.25,38.25v382.5c0,21.114-17.117,38.25-38.25,38.25H153
+                            c-21.133,0-38.25-17.117-38.25-38.25v-76.5H76.5v76.5c0,42.247,34.253,76.5,76.5,76.5h382.5c42.247,0,76.5-34.253,76.5-76.5
+                            v-382.5C612,72.503,577.747,38.25,535.5,38.25z" fill="#4f4a4a"/>
+                        </g>
+                      </g>
+                    </g>
+                  </svg>
+                </Link>
+            }
             <Button className={buttonMinWidth}>
               <svg width="21" height="23" viewBox="0 0 27 29" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M21.9712 6.98603H17.692V5.49614C17.692 2.46555 15.3869 0 12.5533 0C9.71984 0 7.41485 2.46555 7.41485 5.49614V6.98603H3.72788C3.41698 6.98603 3.1648 7.25552 3.1648 7.58829L0 27.703C0 28.0358 0.251958 28.3054 0.563361 28.3054H25.462C25.7732 28.3054 26.0255 28.0358 26.0255 27.703L22.5344 7.58829C22.5344 7.25546 22.2823 6.98603 21.9712 6.98603ZM8.54079 5.49614C8.54079 3.12965 10.341 1.20458 12.5531 1.20458C14.7656 1.20458 16.5657 3.13001 16.5657 5.49614V6.98603H8.54079V5.49614ZM24.8993 27.1008H1.12622L4.29062 8.19031H7.41435V10.8425C7.14267 11.0371 6.96405 11.3678 6.96405 11.7435C6.96405 12.3421 7.41732 12.8276 7.97743 12.8276C8.53687 12.8276 8.99098 12.3425 8.99098 11.7435C8.99098 11.3675 8.81186 11.0371 8.54029 10.8425V8.19031H16.566V10.8425C16.2943 11.0371 16.1154 11.3678 16.1154 11.7435C16.1154 12.3421 16.5689 12.8276 17.129 12.8276C17.6885 12.8276 18.1425 12.3425 18.1425 11.7435C18.1425 11.3675 17.9631 11.0371 17.6917 10.8425V8.19031H21.408L24.8993 27.1008Z" fill="black" />
