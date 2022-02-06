@@ -1,8 +1,7 @@
 import React from 'react';
-import { Box, Link, Button } from '@material-ui/core';
+import { Box, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-// import { filterByType } from '../store/productsReducer'
-// import store from "../store";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   burgerMenu: {
@@ -15,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: '30',
     display: 'flex',
     alignItems: 'center',
-   
+
   },
   buttons: {
     width: '100vw',
@@ -42,16 +41,16 @@ function BurgerMenu({ setIsOpenBurgerMenu }) {
   return (
     <Box className={burgerMenu}>
       <Box className={buttons}>
-        <Link color="textPrimary" href="#" onClick={() => console.log('Click')}>
+        <Link color="textPrimary" to={"/catalog"} onClick={() => setIsOpenBurgerMenu(false)} >
           Каталог
         </Link>
-        <Link color="textPrimary" href="#" onClick={() => console.log('Click')}>
+        <Link color="textPrimary" to={"/about"} onClick={() => setIsOpenBurgerMenu(false)} >
           О нас
         </Link>
-        <Link color="textPrimary" href="#" onClick={() => console.log('Click')}>
+        <Link color="textPrimary" to={"/promo"} onClick={() => setIsOpenBurgerMenu(false)} >
           Акции
         </Link>
-        <Link color="textPrimary" href="#" onClick={() => console.log('Click')}>
+        <Link color="textPrimary" to={"/delivery"} onClick={() => setIsOpenBurgerMenu(false)} >
           Доставка
         </Link>
       </Box >
