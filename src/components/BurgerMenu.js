@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     position: 'absolute',
     backgroundColor: '#C5E0B0',
-    zIndex: '30',
+    zIndex: '100',
     display: 'flex',
     alignItems: 'center',
 

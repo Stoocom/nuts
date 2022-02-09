@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import MiddleWave from '../components/MiddleWave';
-import { Container, Box, Grid, Card, CardMedia, Button } from '@material-ui/core';
+import CatalogProduct from '../components/CatalogProduct';
+import { Container, Box, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { getAllProducts } from "../store/productsSelector";
 import { useSelector, shallowEqual } from "react-redux";
 import { addAllProductsThunk } from '../store/productsReducer';
+import { addFullProductToCart } from '../store/cartReducer';
 import store from "../store";
 
 import funduk from "../images/catalog/products/funduk.jpeg";
@@ -122,27 +124,45 @@ const imageTypes = [
   { product_name: arahis }, { product_name: arahis }, { product_name: arahis },
 ];
 // const testArray = [
-//   { product_id: 1, product_name: "Миндаль" }, { product_id: 2, product_name: "Миндаль" }, { product_id: 3, product_name: "Миндаль" },
-//   { product_id: 4, product_name: "Грецкий орех" }, { product_id: 5, product_name: "Грецкий орех" }, { product_id: 6, product_name: "Грецкий орех" },
-//   { product_id: 7, product_name: "Фундук" }, { product_id: 8, product_name: "Фундук" }, { product_id: 9, product_name: "Фундук" },
-//   { product_id: 10, product_name: "Кешью" }, { product_id: 11, product_name: "Кешью" }, { product_id: 12, product_name: "Кешью" },
-//   { product_id: 13, product_name: "Арахис" }, { product_id: 14, product_name: "Арахис" }, { product_id: 15, product_name: "Арахис" },
+//   {
+//     product_id: 10,
+//     product_name: "Миндаль",
+//     size: 100,
+//     price: 100,
+//   },
+//   {
+//     product_id: 15,
+//     product_name: "Миндаль",
+//     size: 200,
+//     price: 300,
+//   },
+//   {
+//     product_id: 1,
+//     product_name: "Кешью",
+//     size: 100,
+//     price: 100,
+//   },
+//   {
+//     product_id: 2,
+//     product_name: "Кешью",
+//     size: 300,
+//     price: 500,
+//   },
 // ];
 
 function CatalogMain() {
-  const { main, title, card_container, item_media, title_box_new, buttons_container, button_item,
-    line_box, size_box, box_item, price_box } = useStyles();
+  const { main, title} = useStyles();
 
   const [typeName] = useState("Каталог");
-  //const [products] = useState(testArray);
+
   const products = useSelector(getAllProducts, shallowEqual);
 
   const requestProducts = () => {
     store.dispatch(addAllProductsThunk());
   };
+
   useEffect(() => {
     console.log('useEffect CatalogProducts');
-    console.log(products);
     // fetch('/products').then(res => res.json())
     //   .then(data => setTypes(data))
     //   .catch((err) => console.log(err));
@@ -151,60 +171,25 @@ function CatalogMain() {
 
   return (
     <Box className={main}>
-      <MiddleWave/>
+      <MiddleWave />
       {/* <TypesMenu types={types ? types : testArrayTypes}/> */}
 
-      { typeName
-          ? <div className={title}>{typeName}</div>
-          : null
+      {typeName
+        ? <div className={title}>{typeName}</div>
+        : null
       }
-      
+
       <Container maxWidth="lg" style={{ padding: 30 }}>
         <Grid container spacing={8}>
           {
             products
               ?
               products.map((card) => (
-                <Grid item key={card.product_id} style={{ zIndex: 50 }} xs={12} sm={6} md={4}>
-                  <Card className={card_container}>
-                    <CardMedia
-                      className={item_media}
-                      image={imageTypes[card.product_id - 1].product_name}
-                      title="image title"
-                    />
-                    <Box className={line_box}>
-                    </Box>
-                    <Box className={title_box_new}>
-                      {card.product_name}
-                    </Box>
-                    <Box className={size_box}>
-                      <Box className={box_item}>
-                        <Box style={{ display: 'flex' }}>
-                          <svg width="13" height="2" viewBox="0 0 13 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <line y1="1" x2="13" y2="1" stroke="black" />
-                          </svg>
-                        </Box>
-                        <Box style={{ display: 'flex' }}>
-                          {card.size ? card.size + ' г' : '100 г'}
-                        </Box>
-                        <Box style={{ display: 'flex' }}>
-                          <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <line y1="6.5" x2="13" y2="6.5" stroke="black" />
-                            <line x1="6.5" y1="2.18557e-08" x2="6.5" y2="13" stroke="black" />
-                          </svg>
-                        </Box>
-                      </Box>
-                    </Box>
-                    <Box className={price_box}>
-                      {card.price ? card.price + ' р' : '200 р'}
-                    </Box>
-                    <Box className={buttons_container}>
-                      <Button className={button_item}>
-                        Добавить
-                      </Button>
-                    </Box>
-                  </Card>
-                </Grid>
+                <CatalogProduct 
+                  card={card} 
+                  imageUrl={imageTypes[card.product_id - 1].product_name}
+                  addFullProductToCart={addFullProductToCart}
+                />
               ))
               : <div>No Data</div>
           }
