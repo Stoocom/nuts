@@ -1,11 +1,6 @@
 export function getAllProducts(state) {
   console.log("getAllProducts");
-  console.log(state.products);
-  console.log(typeof state.products.lastType);
-
   if (state.products.products) {
-  console.log(state.products.products.length);
-  console.log(state.products.lastType);
     switch (state.products.lastType) {
       case 'all':
         console.log('lastTypeAll');
@@ -23,5 +18,9 @@ export function getAllProducts(state) {
         console.log("Нет таких значений");
     }
   }
+};
 
+export function getOneProduct(state) {
+  console.log("getOneProduct");
+  return state.products.products;
 };
