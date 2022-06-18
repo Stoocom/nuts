@@ -4,10 +4,11 @@ import HomePage from '../pages/HomePage';
 import CatalogPage from '../pages/CatalogPage';
 import LoginPage from '../pages/LoginPage';
 import SignupPage from '../pages/SignupPage';
+import CartPage from '../pages/CartPage';
 import Header from './Header';
 import Footer from './Footer';
 import PrivateRoute from '../hocs/PrivateRoute';
-import PublicRoute from '../hocs/PublicRoute';
+import OneProductPage from '../pages/OneProductPage';
 
 function Router() {
   return (
@@ -16,7 +17,8 @@ function Router() {
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/catalog" element={<CatalogPage />} />
-        {/* <Route exact path="/cart" element={<CartPage />} /> */}
+        <Route exact path="/catalog/:id" element={<OneProductPage />} />
+        <Route exact path="/cart" element={<CartPage />} />
         <Route exact path="/login" element={
           <PrivateRoute>
             <LoginPage />
