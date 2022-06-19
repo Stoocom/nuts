@@ -11,7 +11,12 @@ import { changeLastType } from "../store/productsReducer";
 import { useNavigate } from 'react-router-dom';
 import store from "../store";
 
-const useStyles = makeStyles((theme) => ({
+interface IType {
+  type_id: number;
+  name: string;
+}
+
+const useStyles = makeStyles((theme: any) => ({
   main: {
     backgroundColor: "#FDFDFC",
     width: "100%",
@@ -87,7 +92,7 @@ function Catalog() {
     store.dispatch(addAllTypesThunk());
   };
   
-  const changeType = (id) => {
+  const changeType = (id: number) => {
     //console.log('changeType to ' + id);
     store.dispatch(changeLastType(id));
     navigate('/catalog');
@@ -110,7 +115,7 @@ function Catalog() {
           {
             types
               ?
-              types.map((card) => (
+              types.map((card: IType) => (
                 <Grid item key={card.type_id} xs={12} sm={6} md={4}>
                   <Card className={card_container}>
                     <CardMedia
@@ -130,7 +135,7 @@ function Catalog() {
                 </Grid>
               ))
               :
-              testArray.map((card) => (
+              testArray.map((card: IType) => (
                 <Grid item key={card.type_id} xs={12} sm={6} md={4}>
                   <Card className={card_container}>
                     <CardMedia

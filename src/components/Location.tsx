@@ -3,7 +3,7 @@ import { useLocation, useNavigate, Link as LinkRouter } from 'react-router-dom';
 import { Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: any) => ({
   main: {
     padding: '0px calc(50% - 585px)',
     zIndex: 1,
@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-const Location = (props) => {
+const Location = (props: any) => {
   const { main, path, links } = useStyles();
   const navigate = useNavigate();
   const location = useLocation();
@@ -60,7 +60,7 @@ const Location = (props) => {
     namesArray[2] = props.productName;
   }
 
-  function split(arr, index) {
+  function split(arr: any, index: number) {
     let newArray = [...arr];
     return "/" + newArray.splice(0, (index + 1)).join('/');
   }
@@ -77,7 +77,7 @@ const Location = (props) => {
                   <LinkRouter style={{ textDecoration: 'none', color: '#000000' }} to={`${split(locationArray, index)}`} key={index} >
                     {el
                       ? <span>{namesArray[index]}</span>
-                      : <div></div>
+                      : null
                     }
                   </LinkRouter>
                 </Box>
@@ -88,7 +88,7 @@ const Location = (props) => {
                   <LinkRouter to={`${split(locationArray, index)}`} key={index}>
                     {el
                       ? <span>{namesArray[index]}</span>
-                      : <div></div>
+                      : null
                     }
                   </LinkRouter>
                   <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">

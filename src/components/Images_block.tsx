@@ -3,7 +3,6 @@ import { Box, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 const foto =  require("../images/catalog/nuts_images.jpg");
 
-
 const useStyles =  makeStyles((theme) => ({
   slider: {
     backgroundColor: '#000',

@@ -54,8 +54,8 @@ function CartPage() {
   const { cartProducts } = useSelector(getCartProducts, shallowEqual);
   console.log(cartProducts);
   
-  const sum = (array) => {
-    return array.reduce((sum, prod) => {
+  const sum = (array: any) => {
+    return array.reduce((sum: number, prod: any) => {
       return sum + (prod.quantity * prod.price);
     }, 0);
   }
@@ -69,7 +69,7 @@ function CartPage() {
           <Grid style={{ width: '100%' }} container spacing={6}>
           {
             cartProducts
-              ? cartProducts.map((card, index) => (
+              ? cartProducts.map((card: any, index: number) => (
                 <CartProduct 
                   card={card} 
                   imageUrl={imageTypes[card.product_id - 1].product_name}

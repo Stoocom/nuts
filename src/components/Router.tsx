@@ -15,16 +15,16 @@ function Router() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/catalog" element={<CatalogPage />} />
-        <Route exact path="/catalog/:id" element={<OneProductPage />} />
-        <Route exact path="/cart" element={<CartPage />} />
-        <Route exact path="/login" element={
+        <Route path="/" element={<HomePage />} />
+        <Route path="/catalog" element={<CatalogPage />} />
+        <Route path="/catalog/:id" element={<OneProductPage />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/login" element={
           <PrivateRoute>
             <LoginPage />
           </PrivateRoute>
         } />
-        <Route exact path="/signup" element={<SignupPage />} />
+        <Route path="/signup" element={<SignupPage />} />
         <Route path="*" element = {
           <main style={{ padding: "1rem" }}>
             <p>Sorry There's nothing on this page!</p>

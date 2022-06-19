@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { Box, Button, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from "react-router-dom";
+import { getAuth } from "../store/userSelector";
+import { useSelector, shallowEqual } from "react-redux";
+//import store from "../store";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -42,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 26,
   },
   buttons_container: {
-    marginTop: 50,
+    marginTop: 40,
     width: '100%',
     backgroundColor: "#FFFFFF",
     display: 'flex',
@@ -54,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#99D967",
     color: "#FFFFFF",
     borderRadius: '0',
-    width: '200px',
+    width: '152px',
     height: '33px',
     "&:hover": {
       color: '#99D967',
@@ -92,34 +95,35 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-function SignupPage() {
+function LoginPage() {
   const { main, title, formArea, form_box, input, buttons_container,
     button_item, notes, notes__text, notes__button, err_box } = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const { isAuth } = useSelector(getAuth, shallowEqual);
   const navigate = useNavigate();
 
-  const handleSignup = async (e) => {
-    e.preventDefault();
-    console.log('handleSignup');
+  if (isAuth) {
+    navigate('/');
+  }
 
-    if (password !== confirmPassword) {
-      setError('Пароли не совпадают');
-      return;
-    }
+  const handleLogin = async (e: any) => {
+    e.preventDefault();
+    console.log('handleLogin');
     try {
-      const response = await fetch('/users/signup', {
+      const response = await fetch('/users/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
-      });
+      })
       const data = await response.json();
+      console.log(data);
       if (data.message) {
         setError(data.message);
       }
       if (data.token) {
+        setError("");
         localStorage.setItem("user", JSON.stringify(data));
         navigate("/");
         window.location.reload();
@@ -129,12 +133,13 @@ function SignupPage() {
     }
   };
 
+
   return (
     <section>
       <Box className={main}>
         <Box className={formArea}>
-          <form className={form_box} onSubmit={handleSignup}>
-            <Box className={title}>Регистрация</Box>
+          <form className={form_box} onSubmit={handleLogin}>
+            <Box className={title}>Авторизация</Box>
             <TextField
               className={input}
               id="standard-required"
@@ -149,31 +154,26 @@ function SignupPage() {
               autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <TextField
-              className={input}
-              id="standard-password-input"
-              label="Подтверждение пароля"
-              type="password"
-              autoComplete="confirm-password"
-              onChange={(e) => setConfirmPassword(e.target.value)}
-            />
             {
               error
               ? <Box className={err_box}> {error} </Box>
-              : <Box className={err_box}></Box>
+              : null
             }
             <Box className={buttons_container}>
               <Button type="submit" className={button_item}>
-                Зарегистрироваться
+                Войти
               </Button>
             </Box>
           </form>
           <Box className={notes}>
             <Box className={notes__text}>
-              Зарегистрированы?
+              Не зарегистрированы?
             </Box>
-            <Link to={"/login"} className={notes__button}>
-              Войти как зарегистрированный пользователь
+            {/* <Button className={notes__button}>
+              Регистрация
+            </Button> */}
+            <Link to={"/signup"} className={notes__button}>
+              Регистрация
             </Link>
           </Box>
         </Box>
@@ -182,4 +182,4 @@ function SignupPage() {
   );
 }
 
-export default SignupPage;
+export default LoginPage;
