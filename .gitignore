@@ -4,11 +4,11 @@
 /node_modules
 /.pnp
 .pnp.js
-db.js
 
 # testing
 /coverage
 .idea/
+db.js
 
 # production
 /build
