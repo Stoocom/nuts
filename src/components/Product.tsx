@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-function Product({ card }) {
+function Product({ card }: any) {
   const { main, box, image_block, description_block } = useStyles();
   const [prod, setProduct] = useState(card);
   console.log(prod);

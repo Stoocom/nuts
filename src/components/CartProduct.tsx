@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CartProduct({ card, imageUrl, addProduct, removeProduct, removeFullProduct }) {
+function CartProduct({ card, imageUrl, addProduct, removeProduct, removeFullProduct }: any) {
   const { main, card_container, item_media,
     title, content, quantity, total, close,
     text_title, size_box, box_item } = useStyles();

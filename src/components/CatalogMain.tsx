@@ -184,7 +184,7 @@ function CatalogMain() {
           {
             products
               ?
-              products.map((card) => (
+              products.map((card: any) => (
                 <CatalogProduct 
                   card={card} 
                   imageUrl={imageTypes[card.product_id - 1].product_name}
