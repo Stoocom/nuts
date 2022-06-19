@@ -18,7 +18,7 @@ function App() {
 
   useEffect( () => {
     console.log(process.env.NODE_ENV);
-    console.log('useEffect MainPage');
+    console.log('useEffect Main');
     // fetch('users').then(res => res.json())
     //   .then(data => console.log(data))
     //   .catch((err) => console.log(err));
