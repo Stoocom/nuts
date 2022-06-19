@@ -1,9 +1,9 @@
 import React from 'react';
 import { Box } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
 
-const useStyles =  makeStyles((theme) => ({
+const useStyles =  makeStyles((theme: any) => ({
   slider: {
     backgroundColor: '#F6F6F6',
     width: '100%',
@@ -31,7 +31,7 @@ const useStyles =  makeStyles((theme) => ({
     width: '65%',
     left: '5%',
     color: '#000000',
-    zIndex: '20',
+    zIndex: 20,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'start',
@@ -73,9 +73,8 @@ const useStyles =  makeStyles((theme) => ({
   }
 }));
 
-
 function NoteBlock() {
-  const { slider, backImage, backGreenImage, 
+  const { slider, backImage, backGreenImage,
     textBox, textBox__bon, textBox__bon_h3, textBox__bon_p, textBox__sign } = useStyles();
   return (
     <Box className={slider}>

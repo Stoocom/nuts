@@ -120,6 +120,7 @@ function Header() {
 
   useEffect(() => {
     console.log('Header ' + isAuth);
+    // @ts-ignore
     const userWithToken = JSON.parse(localStorage.getItem("user"));
     console.log(userWithToken);
     if (userWithToken) {

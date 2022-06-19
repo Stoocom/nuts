@@ -8,11 +8,11 @@ const Pool = require('pg').Pool;
 //   });
 // client.connect();
 const pool = new Pool({
-    user: 'htbjqkbmerfaay',
-    password: '50b713708132820cf83d61cf9c3ec9c00390778dc90ec7c91b319cff0432033e',
-    host: 'ec2-34-205-46-149.compute-1.amazonaws.com',
-    port: 5432,
-    database: 'de950pubqc0ica',
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    database: process.env.DB_DATABASE,
     ssl: {
         rejectUnauthorized: false
     }
@@ -20,4 +20,3 @@ const pool = new Pool({
 
 
 module.exports = pool;
-

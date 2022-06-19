@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Box, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { changeLastType } from '../store/productsReducer';
@@ -45,12 +45,18 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const testArrayTypes = [{ id: 1, name: "Орехи" }, { id: 2, name: "Сухофрукты" }, { id: 3, name: "Пряности" }];
+interface Type {
+  type_id: number;
+  name: string;
+}
 
-function TypesMenu({ types }) {
+
+const testArrayTypes = [{ type_id: 1, name: "Орехи" }, { type_id: 2, name: "Сухофрукты" }, { type_id: 3, name: "Пряности" }];
+
+function TypesMenu() {
   const { main, mainList, buttons, itemList } = useStyles();
-
-  const filterProductsByType = (id) => {
+  const [ types, setTypes] = useState<Type[]>(null!);
+  const filterProductsByType = (id: number) => {
     console.log("filterProductsByType" + id);
     store.dispatch(changeLastType(id));
   };
@@ -61,15 +67,20 @@ function TypesMenu({ types }) {
         {
           types
             ? types.map((card) => {
-              return <Box key={card.id} className={mainList}>
-                <Button className={itemList} onClick={() => filterProductsByType(card.type_id)}>
+              return <Box key={card.type_id} className={mainList}>
+                <Button
+                    className={itemList}
+                    onClick={ () => {
+                      filterProductsByType(card.type_id);
+                    }}
+                >
                   {card.name}
                 </Button>
               </Box>
             })
-            : testArrayTypes.map((card) => {
-              return <Box key={card.id} className={mainList}>
-                <Button className={itemList} onClick={() => filterProductsByType(card.id)}>
+            : testArrayTypes.map((card: Type) => {
+              return <Box key={card.type_id} className={mainList}>
+                <Button className={itemList} onClick={() => filterProductsByType(card.type_id)}>
                   {card.name}
                 </Button>
               </Box>

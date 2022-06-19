@@ -36,7 +36,7 @@ const menusList = [
   { id: '3', isHaveButtons: false, title: 'Контакты', listArray: [ { idList: 2, name: "89008002020" }, { idList: 3, name: "bonappetite@gmail.com" }, { idList: 4, name: "Санкт-Петербург" }]},
 ]
 
-function ItemsList({ title, isHaveButtons, list }) {
+function ItemsList({ title, isHaveButtons, list }: any) {
   console.log(isHaveButtons);
   console.log(list);
   return (
@@ -48,7 +48,7 @@ function ItemsList({ title, isHaveButtons, list }) {
             <Link style={{ fontWeight: 500, height: '30px' }}>
               {title}
             </Link>
-            { list.map((card, index) => {
+            { list.map((card: any, index: number) => {
                 return (
                   <Link key={index} style={{ fontWeight: 300, height: '30px' }}>
                     {card.name}
@@ -62,7 +62,7 @@ function ItemsList({ title, isHaveButtons, list }) {
           <Box style={{ fontWeight: 500, height: '30px' }}>
             {title}
           </Box>
-          { list.map((card, index) => {
+          { list.map((card: any, index: number) => {
               return (
                 <Box key={index} style={{ fontWeight: 300, height: '30px' }}>
                   {card.name}

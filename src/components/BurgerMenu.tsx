@@ -11,10 +11,9 @@ const useStyles = makeStyles((theme) => ({
     height: '100vh',
     position: 'absolute',
     backgroundColor: '#C5E0B0',
-    zIndex: '100',
+    zIndex: 100,
     display: 'flex',
     alignItems: 'center',
-
   },
   buttons: {
     width: '100vw',
@@ -36,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-function BurgerMenu({ setIsOpenBurgerMenu }) {
+function BurgerMenu({ setIsOpenBurgerMenu }: any) {
   const { burgerMenu, buttons, closeButton } = useStyles();
   return (
     <Box className={burgerMenu}>
