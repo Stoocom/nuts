@@ -4,8 +4,9 @@ const favicon = require('express-favicon');
 const app = express();
 const path = require('path');
 const router = require('./routes/index.js')
-const pool = require('./db');
+// const pool = require('./db');
 const ApiError = require('./error/ApiError');
+const sequelize = require('./db')
 
 const port = process.env.PORT || 3001;
 
@@ -89,8 +90,15 @@ app.use((err, req, res, next) => {
 // });
 
 
+async function start() {
+  try {
+    await sequelize.authenticate();
+    app.listen(port, () => console.log(`App running on port ${port}.`))
+    console.log('Connection has been established successfully.')
+  } catch (error) {
+    console.error('Unable to connect to the database:', error)
+  }
+}
 
+start()
 
-app.listen(port, () => {
-    console.log(`App running on port ${port}.`)
-})
