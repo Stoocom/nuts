@@ -1,19 +1,31 @@
-const pool = require('../db');
+const sequelize = require("../db");
+const { ProductType } = require("../models/models");
 
 class TypeController {
-    async create(req, res) {
-        console.log("create");
-    }
+  async create(req, res) {
+    const { name } = req.body;
+    const newType = await ProductType.create({ name });
+    return res.json(newType);
+  }
 
-    async getAllTypes(req, res) {
-      console.log("types from typeController");
-      try {
-        const types = await pool.query('SELECT * FROM types');
-        res.json(types.rows);
-      } catch (err) {
-        console.error(err.message);
-      }
+  async getAllTypes(req, res) {
+    try {
+      const types = await ProductType.findAll();
+      return res.json(types);
+    } catch (err) {
+      console.error(err.message);
     }
+  }
+
+  async getOneType(req, res) {
+    try {
+      const searchId = req.params.id;
+      const oneType = await ProductType.findOne({ where: { id: searchId } });
+      return res.json(oneType);
+    } catch (err) {
+      console.error(err.message);
+    }
+  }
 }
 
-module.exports = new TypeController()
+module.exports = new TypeController();
