@@ -6,6 +6,5 @@ const typeController = require("../controllers/typeController");
 //router.post('/', checkRole('ADMIN'), typeController.create)
 router.post("/", typeController.create);
 router.get("/", typeController.getAllTypes);
-router.get("/:id", typeController.getOneType);
 
 module.exports = router;

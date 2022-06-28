@@ -18,9 +18,13 @@ const User = sequelize.define(
 const Product = sequelize.define(
   "product",
   {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    name: { type: DataTypes.STRING, allowNull: false },
-    typeId: {
+    product_id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    product_name: { type: DataTypes.STRING, allowNull: false },
+    type: {
       type: DataTypes.INTEGER,
     },
     size: { type: DataTypes.INTEGER, allowNull: false },
@@ -34,7 +38,7 @@ const Product = sequelize.define(
 const ProductType = sequelize.define(
   "product_type",
   {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    type_id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, allowNull: false },
   },
   {
@@ -68,18 +72,6 @@ const OrderProduct = sequelize.define(
     tableName: "order_product_s",
   }
 );
-
-User.hasMany(Order);
-Order.belongsTo(User);
-
-Order.hasMany(OrderProduct);
-OrderProduct.belongsTo(Order);
-
-ProductType.hasMany(Product);
-Product.belongsTo(ProductType);
-
-OrderProduct.hasMany(Product);
-Product.belongsTo(OrderProduct);
 
 module.exports = {
   User,

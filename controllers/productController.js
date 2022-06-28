@@ -2,8 +2,13 @@ const { Product } = require("../models/models");
 
 class ProductController {
   async create(req, res) {
-    const { name, typeId, size, price } = req.body;
-    const newProduct = await Product.create({ name, typeId, size, price });
+    const { product_name, type, size, price } = req.body;
+    const newProduct = await Product.create({
+      product_name,
+      type,
+      size,
+      price,
+    });
     return res.json(newProduct);
   }
 
@@ -18,8 +23,10 @@ class ProductController {
 
   async getOneProduct(req, res) {
     try {
-      const searchId = req.params.id;
-      const oneProduct = await Product.findOne({ where: { id: searchId } });
+      const searchId = req.params.product_id;
+      const oneProduct = await Product.findOne({
+        where: { product_id: searchId },
+      });
       return res.json(oneProduct);
     } catch (err) {
       console.error(err.message);
@@ -28,9 +35,9 @@ class ProductController {
 
   async getProductbyTypeId(req, res) {
     try {
-      const searchId = req.params.id;
+      const searchId = req.params.product_id;
       const ProductsByType = await Product.findAll({
-        where: { typeId: searchId },
+        where: { type: searchId },
       });
       return res.json(ProductsByType);
     } catch (err) {

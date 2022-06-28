@@ -16,16 +16,6 @@ class TypeController {
       console.error(err.message);
     }
   }
-
-  async getOneType(req, res) {
-    try {
-      const searchId = req.params.id;
-      const oneType = await ProductType.findOne({ where: { id: searchId } });
-      return res.json(oneType);
-    } catch (err) {
-      console.error(err.message);
-    }
-  }
 }
 
 module.exports = new TypeController();
