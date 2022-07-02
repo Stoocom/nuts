@@ -20,7 +20,7 @@ const port = process.env.PORT || 3001;
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "build")));
-  app.use(favicon(__dirname + "/build/favicon.ico"));
+  app.use(favicon(__dirname + "/favicon.ico"));
   //console.log(process.env.NODE_ENV === "production");
   //app.use(express.json());
   //app.use(express.urlencoded({ extended: true }));
