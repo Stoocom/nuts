@@ -22,8 +22,8 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "build")));
   app.use(favicon(__dirname + "/build/favicon.ico"));
   //console.log(process.env.NODE_ENV === "production");
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+  //app.use(express.json());
+  //app.use(express.urlencoded({ extended: true }));
   app.use("/api", router);
 
   // app.get("/products", async (req, res) => {
