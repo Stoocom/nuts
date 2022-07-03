@@ -13,7 +13,7 @@
 # production
 .env
 example.rest
-
+/build
 .idea/
 
 # misc
