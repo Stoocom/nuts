@@ -98,16 +98,10 @@ function Catalog() {
     navigate('/catalog');
   };
 
-
   useEffect(() => {
-    //console.log(imageTypes[0].type);
-    //console.log('useEffect types');
-    // fetch('types').then(res => res.json())
-    //   .then(data => setTypes(data))
-    //   .catch((err) => console.log(err));
     requestTypes();
-
   }, [])
+
   return (
     <Box className={main}>
       <Container maxWidth="lg" style={{ padding: 30 }}>

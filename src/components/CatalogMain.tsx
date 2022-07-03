@@ -152,9 +152,7 @@ const imageTypes = [
 
 function CatalogMain() {
   const { main, title} = useStyles();
-
   const [typeName] = useState("Каталог");
-
   const products = useSelector(getAllProducts, shallowEqual);
 
   const requestProducts = () => {
@@ -162,17 +160,13 @@ function CatalogMain() {
   };
 
   useEffect(() => {
-    console.log('useEffect CatalogProducts');
-    // fetch('/products').then(res => res.json())
-    //   .then(data => setTypes(data))
-    //   .catch((err) => console.log(err));
+    //console.log('useEffect CatalogProducts');
     requestProducts();
   }, []);
 
   return (
     <Box className={main}>
       <MiddleWave />
-      {/* <TypesMenu types={types ? types : testArrayTypes}/> */}
 
       {typeName
         ? <div className={title}>{typeName}</div>
@@ -184,11 +178,12 @@ function CatalogMain() {
           {
             products
               ?
-              products.map((card: any) => (
-                <CatalogProduct 
-                  card={card} 
-                  imageUrl={imageTypes[card.product_id - 1].product_name}
-                  addFullProductToCart={addFullProductToCart}
+              products.map((card: any, index: number) => (
+                <CatalogProduct
+                    key={index}
+                    card={card}
+                    imageUrl={imageTypes[card.product_id - 1].product_name}
+                    addFullProductToCart={addFullProductToCart}
                 />
               ))
               : <div>No Data</div>

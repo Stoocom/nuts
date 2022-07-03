@@ -37,8 +37,8 @@ const menusList = [
 ]
 
 function ItemsList({ title, isHaveButtons, list }: any) {
-  console.log(isHaveButtons);
-  console.log(list);
+  //console.log(isHaveButtons);
+  //console.log(list);
   return (
     <Box style={{ height: '100%', marginLeft: 10, display: 'flex', justifyContent: 'start',flexDirection: 'column'}}>
       { 

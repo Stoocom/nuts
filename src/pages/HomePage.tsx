@@ -12,15 +12,8 @@ import './HomePage.css';
 
 function HomePage() {
   //const prefix = process.env.NODE_ENV === 'production' ? "https://heroku-app-test12.herokuapp.com/" : "http://localhost:3001";
-  //const [str] = useState("");
+  //console.log(process.env.NODE_ENV);
 
-  useEffect( () => {
-    console.log(process.env.NODE_ENV);
-    console.log('useEffect HomePage');
-    // fetch('users').then(res => res.json())
-    //   .then(data => console.log(data))
-    //   .catch((err) => console.log(err));
-  }, [])
   return (
     <section>
       <div className="App">  

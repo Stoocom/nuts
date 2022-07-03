@@ -12,7 +12,7 @@ export const cartReducer = createSlice({
   initialState,
   reducers: {
     AddProductToCart: (state, action) => {
-      console.log('AddProductToCart');
+      //console.log('AddProductToCart');
       if (state.cartProducts.length === 0) {
         state.cartProducts.push({ ...action.payload, quantity: 1 });
       } else {
@@ -28,7 +28,7 @@ export const cartReducer = createSlice({
       }
     },
     removeProductFromCart: (state, action) => {
-      console.log('removeProductToCart');
+      //console.log('removeProductToCart');
       if (state.cartProducts.length > 1) {
         const findId = state.cartProducts.findIndex((prod) => prod.product_id === action.payload.product_id);
           if (state.cartProducts[findId].quantity === 1) {
@@ -43,15 +43,14 @@ export const cartReducer = createSlice({
           state.cartProducts[0].quantity -= 1;
         }
       }
-      console.log(state.cartProducts.length);
     },
     removeFullProductFromCart: (state, action) => {
-      console.log('removeFullProductFromCart');
+      //console.log('removeFullProductFromCart');
       const findId = state.cartProducts.findIndex((prod) => prod.product_id === action.payload.product_id);
       state.cartProducts.splice(findId, 1);
     },
     addFullProductToCart: (state, action) => {
-      console.log('addFullProductToCart');
+      //console.log('addFullProductToCart');
       if (state.cartProducts.length) {
         const findId = state.cartProducts.findIndex((prod) => prod.product_id === action.payload.product_id);
         if (findId >= 0) {

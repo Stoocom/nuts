@@ -52,7 +52,7 @@ const imageTypes = [
 function CartPage() {
   const { main, title, cartCount } = useStyles();
   const { cartProducts } = useSelector(getCartProducts, shallowEqual);
-  console.log(cartProducts);
+  //console.log(cartProducts);
   
   const sum = (array: any) => {
     return array.reduce((sum: number, prod: any) => {

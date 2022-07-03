@@ -138,7 +138,6 @@ function Images_block() {
   const [activeUrl] = useState(foto);
   return (
     <Box className={slider}>
-  
         <img
           className={slider_img}
           key={img[0].key}

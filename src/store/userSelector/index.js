@@ -1,4 +1,4 @@
 export function getAuth(state) {
-  console.log("getAuth");
+  //console.log("getAuth");
   return state.user;
 };

@@ -1,18 +1,18 @@
 export function getAllProducts(state) {
-  console.log("getAllProducts");
+  //console.log("getAllProducts");
   if (state.products.products) {
     switch (state.products.lastType) {
       case 'all':
-        console.log('lastTypeAll');
+        //console.log('lastTypeAll');
         return state.products.products;
       case 1:
-        console.log('lastType1');
+        //console.log('lastType1');
         return state.products.products.filter((item) => item.type === 1);
       case 2:
-        console.log('lastType2');
+        //console.log('lastType2');
         return state.products.products.filter((item) => item.type === 2);
       case 3:
-        console.log('lastType3');
+        //console.log('lastType3');
         return state.products.products.filter((item) => item.type === 3);
       default:
         console.log("Нет таких значений");
@@ -21,6 +21,6 @@ export function getAllProducts(state) {
 };
 
 export function getOneProduct(state) {
-  console.log("getOneProduct");
+  //console.log("getOneProduct");
   return state.products.products;
 };

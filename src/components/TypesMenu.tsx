@@ -50,14 +50,13 @@ interface Type {
   name: string;
 }
 
-
 const testArrayTypes = [{ type_id: 1, name: "Орехи" }, { type_id: 2, name: "Сухофрукты" }, { type_id: 3, name: "Пряности" }];
 
 function TypesMenu() {
   const { main, mainList, buttons, itemList } = useStyles();
   const [ types, setTypes] = useState<Type[]>(null!);
   const filterProductsByType = (id: number) => {
-    console.log("filterProductsByType" + id);
+    //console.log("filterProductsByType" + id);
     store.dispatch(changeLastType(id));
   };
 

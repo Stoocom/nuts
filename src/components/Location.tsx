@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme: any) => ({
     alignItems: 'center',
     paddingLeft: '3%'
   }
-
 }))
 
 
@@ -39,12 +38,12 @@ const Location = (props: any) => {
   const { main, path, links } = useStyles();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location.pathname.split('/'));
+  //console.log(location.pathname.split('/'));
   const locationArray = location.pathname.split('/');
   locationArray.splice(0, 1);
   let namesArray = [...locationArray];
-  console.log(namesArray);
-  console.log(locationArray);
+  //console.log(namesArray);
+  //console.log(locationArray);
 
   if (namesArray.length === 1) {
     if (namesArray[0] === "catalog") {
@@ -70,7 +69,6 @@ const Location = (props: any) => {
       <Box className={path}>
         {
           namesArray.map((el, index) => {
-
             if (namesArray.length === index + 1) {
               return (
                 <Box key={index}>

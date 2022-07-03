@@ -93,7 +93,7 @@ function CartProduct({ card, imageUrl, addProduct, removeProduct, removeFullProd
   const { main, card_container, item_media,
     title, content, quantity, total, close,
     text_title, size_box, box_item } = useStyles();
-  console.log(card);
+  //console.log(card);
   return (
     <Grid item style={{ zIndex: 50 }} xs={12} sm={6} md={4} lg={4}>
       <Card className={card_container}>

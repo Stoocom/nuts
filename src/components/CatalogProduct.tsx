@@ -108,17 +108,15 @@ const useStyles = makeStyles((theme) => ({
 function CatalogProduct({ card, imageUrl, addFullProductToCart }: any) {
   const { card_container, item_media, title_box_new, buttons_container, button_item,
     line_box, size_box, box_item, price_box } = useStyles();
-  console.log(card);
+  //console.log(card);
   const [productQuantity, setProductQuantity] = useState(1);
 
   const incrementQuantity = (count: number) => {
-    console.log('Увеличение');
     if (count < 20) {
       setProductQuantity(count + 1);
     }
   }
   const decrementQuantity = (count: number) => {
-    console.log('Уменьшение');
     if (count > 1) {
       setProductQuantity(count - 1);
     }
