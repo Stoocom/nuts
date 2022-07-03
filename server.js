@@ -24,7 +24,9 @@ if (process.env.NODE_ENV === "production") {
   console.log(process.env.NODE_ENV === "production");
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+  app.use(cors());
   app.use("/api", router);
+  //app.use(express.static(path.join(__dirname, "build")));
 
   // app.get("/products", async (req, res) => {
   //   console.log("products");

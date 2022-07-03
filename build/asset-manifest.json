@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.481b2605.css",
+    "main.js": "/static/js/main.bc222070.js",
+    "static/media/nuts_images.jpg": "/static/media/nuts_images.99168918ec74f417c1ff.jpg",
+    "static/media/type_spices.jpg": "/static/media/type_spices.60a2bf77db5c46e06785.jpg",
+    "static/media/type_dried_fruits.jpg": "/static/media/type_dried_fruits.3bbbbc042be7822c9435.jpg",
+    "static/media/mindal.jpeg": "/static/media/mindal.cb492285484bc273dc1e.jpeg",
+    "static/media/arahis.jpeg": "/static/media/arahis.6dd512d7d427b063cbf0.jpeg",
+    "static/media/funduk.jpeg": "/static/media/funduk.d6b2abffdd40ee737494.jpeg",
+    "static/media/keshiu.jpeg": "/static/media/keshiu.d171b86c2792b9951acb.jpeg",
+    "static/media/type_nuts.jpg": "/static/media/type_nuts.59420ae75db0d39897cd.jpg",
+    "static/media/gretskiy.jpeg": "/static/media/gretskiy.e4472cf4e5796ed98c8d.jpeg",
+    "index.html": "/index.html",
+    "main.481b2605.css.map": "/static/css/main.481b2605.css.map",
+    "main.bc222070.js.map": "/static/js/main.bc222070.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.481b2605.css",
+    "static/js/main.bc222070.js"
+  ]
+}
