@@ -1,11 +1,15 @@
 import React from 'react';
 import { Location } from '../components/Location';
 import CartProduct from '../components/CartProduct';
-import { Box, Grid } from '@material-ui/core';
+import { Box, Grid, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { getCartProducts } from "../store/cartSelector";
+import { getAuth } from "../store/userSelector"
 import { useSelector, shallowEqual } from "react-redux";
 import { AddProductToCart,  removeProductFromCart, removeFullProductFromCart} from '../store/cartReducer';
+import { useForm, SubmitHandler } from "react-hook-form";
+import { signupThunk } from '../store/userReducer';
+import store from "../store";
 
 import funduk from "../images/catalog/products/funduk.jpeg";
 import gretskiy from "../images/catalog/products/gretskiy.jpeg";
@@ -37,6 +41,47 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     fontSize: '30px',
     lineHeight: '50px'
+  },
+  form: {
+    width: 400,
+    marginButtom: '10px',
+    fontFamily: 'Philosopher',
+    fontWeight: 400,
+    fontSize: '30px',
+    lineHeight: '50px',
+    display: 'flex',
+    flexDirection: "column",
+    gap: 20,
+  },
+  padding_content: {
+    padding: '20px calc(50% - 585px)',
+    marginLeft: '30px',
+  },
+  itemList: {
+    height: '78px',
+    fontFamily: 'Philosopher',
+    fontStyle: 'Regular',
+    fontSize: '22px',
+    lineHeight: '25px',
+    padding: '5px 50px',
+    border: '1px solid #7DC048',
+    borderRadious: 10,
+    "&:hover": {
+      color: '#FFFFFF',
+      backgroundColor: "#7DC048",
+    },
+    "&:focus": {
+      color: '#FFFFFF',
+      backgroundColor: "#7DC048",
+    }
+  },
+  input: {
+    border: '1px solid #7DC048',
+    padding: '10px 10px',
+    fontFamily: 'Philosopher',
+    fontStyle: 'Regular',
+    fontSize: '22px',
+    lineHeight: '25px',
   }
 }));
 
@@ -48,11 +93,23 @@ const imageTypes = [
   { product_name: arahis }, { product_name: arahis }, { product_name: arahis },
 ];
 
+export type Inputs = {
+  phone: string,
+  email: string,
+  comment: string,
+};
 
 function CartPage() {
-  const { main, title, cartCount } = useStyles();
+  const { main, title, cartCount, form, itemList, padding_content, input } = useStyles();
   const { cartProducts } = useSelector(getCartProducts, shallowEqual);
-  //console.log(cartProducts);
+  const { isAuth } = useSelector(getAuth, shallowEqual);
+  const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>({
+    mode: "onChange"
+  });
+  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
+    console.log(data);
+    store.dispatch(signupThunk(data));
+  }
   
   const sum = (array: any) => {
     return array.reduce((sum: number, prod: any) => {
@@ -83,8 +140,20 @@ function CartPage() {
           }
           </Grid>
           <Box className={cartCount}> В корзине товара на сумму { " " + sum(cartProducts) + " рублей" } </Box>
-        </Box>
+          <Box className={padding_content}>
+            {
+              true ? <form className={form} onSubmit={handleSubmit(onSubmit)}>
+                    <input className={input} placeholder={"телефон"} {...register("phone", {required: true})} />
+                    {errors.phone && <span>Телефон необходим для подтверждения заказа</span>}
+                    <input className={input} placeholder={"e-mail"} {...register("email")} />
+                    <textarea className={input} placeholder={"Комментарий"} {...register("comment")} />
+                    <input className={itemList} type="submit" value="Оформить заказ"/>
+                  </form>
+                  : <Button className={itemList}>Оформить заказ</Button>
+            }
+          </Box>
 
+        </Box>
       </div>
     </section>
   );

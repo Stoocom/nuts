@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Container, Box, Grid, Card, CardMedia, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import nuts from "../images/catalog/types/type_nuts.jpg";
@@ -14,6 +14,22 @@ import store from "../store";
 interface IType {
   type_id: number;
   name: string;
+}
+
+const useUnload = (fn: any) => {
+  const cb = useRef(fn);
+
+  React.useEffect(() => {
+    const onUnload = cb.current;
+    window.addEventListener('beforeunload', onUnload);
+    return () => {
+      window.removeEventListener('beforeunload', onUnload);
+    };
+  }, [cb]);
+};
+
+function show () {
+  console.log('show');
 }
 
 const useStyles = makeStyles((theme: any) => ({
@@ -87,11 +103,18 @@ function Catalog() {
   let navigate = useNavigate();
   const { main, card_container, item_media, title_box, buttons_container, button_item } = useStyles();
   const { types } = useSelector(getAllTypes, shallowEqual);
+  const isCheckedRef = useRef(false);
+  const handler = (event: any) => {
+    event.preventDefault();
+    if (isCheckedRef.current) console.log("clean up");
+    else console.log("no clean up");
+    event.returnValue = '';
+  };
 
   const requestTypes = () => {
     store.dispatch(addAllTypesThunk());
   };
-  
+
   const changeType = (id: number) => {
     //console.log('changeType to ' + id);
     store.dispatch(changeLastType(id));
@@ -101,6 +124,10 @@ function Catalog() {
   useEffect(() => {
     requestTypes();
   }, [])
+
+  useEffect(() => {
+    window.addEventListener('hashchange', function(e){console.log('hash changed')});
+  }, []);
 
   return (
     <Box className={main}>

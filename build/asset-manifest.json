@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.481b2605.css",
-    "main.js": "/static/js/main.bc222070.js",
+    "main.js": "/static/js/main.03f4e055.js",
     "static/media/nuts_images.jpg": "/static/media/nuts_images.99168918ec74f417c1ff.jpg",
     "static/media/type_spices.jpg": "/static/media/type_spices.60a2bf77db5c46e06785.jpg",
     "static/media/type_dried_fruits.jpg": "/static/media/type_dried_fruits.3bbbbc042be7822c9435.jpg",
@@ -13,10 +13,10 @@
     "static/media/gretskiy.jpeg": "/static/media/gretskiy.e4472cf4e5796ed98c8d.jpeg",
     "index.html": "/index.html",
     "main.481b2605.css.map": "/static/css/main.481b2605.css.map",
-    "main.bc222070.js.map": "/static/js/main.bc222070.js.map"
+    "main.03f4e055.js.map": "/static/js/main.03f4e055.js.map"
   },
   "entrypoints": [
     "static/css/main.481b2605.css",
-    "static/js/main.bc222070.js"
+    "static/js/main.03f4e055.js"
   ]
 }

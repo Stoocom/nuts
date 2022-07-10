@@ -9,6 +9,7 @@ class TypeController {
   }
 
   async getAllTypes(req, res) {
+    console.log("getAllTypes");
     try {
       const types = await ProductType.findAll();
       return res.json(types);
