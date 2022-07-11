@@ -24,7 +24,7 @@ const generate_password = (len) => {
 }
 
 class UserController {
-  async signup(req, res, next) {
+  async sendCodeBySMS(req, res, next) {
     console.log("UserController signup");
     console.log(req.body);
     const { phone, email } = req.body;
@@ -40,8 +40,9 @@ class UserController {
     } else {
       const code = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
       const newPassword = generate_password(6) + code;
-      const urlSMSAero = `https://${process.env.SMS_AERO_MAIL}:${process.env.SMS_AERO_KEY}@gate.smsaero.ru/v2/sms/send?numbers[]=${phone}&text=Code+Verificate:+${code}+Password:+${newPassword}&sign=SMS Aero`
-      const response = await fetch(urlSMSAero);
+      const authApi = 'https://eliseevan1986@mail.ru:c2IO2Le8dKblaTmlI6sqm32SKkB@gate.smsaero.ru/v2/auth'
+      //const urlSMSAero = `https://${process.env.SMS_AERO_MAIL}:${process.env.SMS_AERO_KEY}@gate.smsaero.ru/v2/sms/send?numbers[]=${phone}&text=Code+Verificate:+${code}+Password:+${newPassword}&sign=SMS Aero`
+      const response = await fetch(authApi);
       const data = await response.json();
       console.log(data);
       if (data.success) {

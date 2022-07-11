@@ -16,6 +16,7 @@ import gretskiy from "../images/catalog/products/gretskiy.jpeg";
 import keshiu from "../images/catalog/products/keshiu.jpeg";
 import mindal from "../images/catalog/products/mindal.jpeg";
 import arahis from "../images/catalog/products/arahis.jpeg";
+import {CodeCheck} from "../components/CodeCheck";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -102,15 +103,18 @@ export type Inputs = {
 function CartPage() {
   const { main, title, cartCount, form, itemList, padding_content, input } = useStyles();
   const { cartProducts } = useSelector(getCartProducts, shallowEqual);
-  const { isAuth } = useSelector(getAuth, shallowEqual);
-  const { register, handleSubmit, watch, formState: { errors } } = useForm<Inputs>({
+  const { isAuth, code, password} = useSelector(getAuth, shallowEqual);
+
+  const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({
     mode: "onChange"
   });
   const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
     console.log(data);
     store.dispatch(signupThunk(data));
   }
-  
+  console.log(isAuth)
+  console.log(code);
+  console.log(password);
   const sum = (array: any) => {
     return array.reduce((sum: number, prod: any) => {
       return sum + (prod.quantity * prod.price);
@@ -120,6 +124,20 @@ function CartPage() {
   return (
     <section>
       <div style={{ padding: '0 calc(50% - 800px)', minWidth: '100px' }}>
+        {
+          code && <Box style={{
+              width: 500,
+              position: 'absolute',
+              height: 300,
+              backgroundColor: 'lightgrey',
+              left: '50%',
+              top: '50%',
+              marginLeft: -250,
+              marginTop: -150,
+            }}>
+              <CodeCheck />
+            </Box>
+        }
         <Location />
         <Box className={main}>
           <Box className={title}>Корзина</Box>
@@ -144,7 +162,7 @@ function CartPage() {
             {
               true ? <form className={form} onSubmit={handleSubmit(onSubmit)}>
                     <input className={input} placeholder={"телефон"} {...register("phone", {required: true})} />
-                    {errors.phone && <span>Телефон необходим для подтверждения заказа</span>}
+                    {errors.phone && <span style={{ color: "red" }}>Телефон необходим для подтверждения заказа</span>}
                     <input className={input} placeholder={"e-mail"} {...register("email")} />
                     <textarea className={input} placeholder={"Комментарий"} {...register("comment")} />
                     <input className={itemList} type="submit" value="Оформить заказ"/>
